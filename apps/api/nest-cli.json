@@ -8,6 +8,10 @@
       {
         "include": "forecast/trained-model.json",
         "watchAssets": true
+      },
+      {
+        "include": "forecast/operational-models.json",
+        "watchAssets": true
       }
     ]
   }
