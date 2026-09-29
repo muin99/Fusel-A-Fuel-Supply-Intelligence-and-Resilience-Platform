@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-29T08:31:50.221Z",
+  "version": "trained-tree-ensemble-1.0.0",
+  "forecastLatencyMs": 48,
+  "trainedSeries": 12,
+  "requestId": 15,
+  "allocationId": 1,
+  "requestStatus": "FULFILLED",
+  "offlineFallback": true,
+  "recovery": true,
+  "health": "healthy",
+  "result": "PASS"
+}

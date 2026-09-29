@@ -4,6 +4,7 @@ import { useToast } from "@/components/providers";
 import { api } from "./api";
 import type { Alert, AuditEntry, DecisionStatus, DrillStatus, FuelRequest, HealthStatus, NetworkSnapshot, Recommendation, RiskRow } from "./types";
 
+export const useAuthConfig = () => useQuery({ queryKey: ["auth-config"], queryFn: () => api<{ demoMode: boolean }>("/auth/config"), staleTime: Infinity, refetchInterval: false });
 export const useNetwork = () => useQuery({ queryKey: ["network"], queryFn: () => api<NetworkSnapshot>("/network") });
 export const useRisk = () => useQuery({ queryKey: ["risk"], queryFn: () => api<(RiskRow & { mode?: "model" | "fallback" })[]>("/forecast/risk") });
 export const useAlerts = (limit = 50) => useQuery({ queryKey: ["alerts", limit], queryFn: () => api<Alert[]>(`/alerts?limit=${limit}`) });

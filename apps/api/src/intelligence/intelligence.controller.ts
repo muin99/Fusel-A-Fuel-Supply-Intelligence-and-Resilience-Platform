@@ -31,6 +31,8 @@ import type { NetworkSnapshot } from '../state/state.types.js';
 import { retrieve } from './retrieval.js';
 import { comparePolicies } from './counterfactual.js';
 import { depotSupplyRisk } from './supply-risk.js';
+import { operationalInfo, predict, transportFeatures } from '../forecast/operational.js';
+import { trainedModelInfo } from '../forecast/trained.js';
 import { CopilotService } from './copilot.service.js';
 
 const CounterfactualSchema = z.object({
@@ -59,8 +61,12 @@ export class IntelligenceController {
 
   @Get('models')
   models() {
+    const trained = trainedModelInfo();
+    const operational = operationalInfo();
     return {
-      version: MODEL_VERSION,
+      demandForecast: { engine: trained.available ? 'trained tree ensemble (Random Forest + Extra Trees + Gradient Boosting)' : 'statistical ensemble', version: trained.version, fallback: `${MODEL_VERSION} statistical ensemble (first 12 ticks, out-of-range inputs, artifact errors)`, error: trained.error },
+      operational: { version: operational.version, available: operational.available, error: operational.error, tasks: Object.fromEntries(Object.entries(operational.tasks).map(([k, t]) => [k, { models: t.models, weights: t.weights, unit: (t.report as { unit?: string }).unit, label: (t.report as { label?: string }).label }])) },
+      version: trained.version ?? MODEL_VERSION,
       models: ['seasonal_ewma', 'local_mean', 'seasonal_regression'],
       selection:
         'Inverse rolling-origin MAE ensemble; last 24 holdout targets, no future observations in fitting',
@@ -191,8 +197,18 @@ export class IntelligenceController {
         .filter((a) => a.route_id === r.id && a.actual_arrival_tick !== null && a.expected_arrival_tick !== null)
         .map((a) => Math.max(0, a.actual_arrival_tick! - a.expected_arrival_tick!));
       const meanDelay = delays.reduce((v, x) => v + x, 0) / Math.max(1, delays.length);
+      const depot = s.depots.find((d) => d.id === r.source_depot_id);
+      const load = s.allocations.filter((a) => a.source_depot_id === r.source_depot_id && a.status === 'PENDING').reduce((x, a) => x + a.quantity, 0) / Math.max(1, depot?.dispatch_capacity_per_tick ?? 1);
+      let mlDelay: number | null = null;
+      try {
+        const hour = parseSimTime(s.instance.sim_time).getUTCHours();
+        mlDelay = Math.max(0, Math.round(predict('transport_delay', transportFeatures(r.transit_ticks, hour, depot?.status === 'CONSTRAINED', load, meanDelay, delays.length)) * 100) / 100);
+      } catch {
+        mlDelay = null;
+      }
       return {
         routeId: r.id,
+        mlPredictedDelayTicks: mlDelay,
         samples: delays.length,
         transitTicks: r.transit_ticks,
         meanObservedDelayTicks: meanDelay,

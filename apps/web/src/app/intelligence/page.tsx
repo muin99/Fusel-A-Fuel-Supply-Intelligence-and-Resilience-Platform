@@ -59,13 +59,14 @@ export default function IntelligenceLab() {
           <Sparkles size={22} /> Intelligence Lab
         </h1>
         <p className="max-w-3xl text-sm text-muted">
-          The models behind every recommendation, measured on this run&apos;s real simulator history. Forecast → stockout probability → constrained LP (with heuristic fallback) →
+          Trained tree forecasts feed stockout probability and constrained LP. The charts below evaluate the statistical fallback on this run&apos;s history.
           GPT agent that explains and investigates. Operators decide; autopilot only executes routine, high-confidence plans.
         </p>
       </div>
 
+      <Card title="Trained forecasting ensemble"><Link href="/ml" className="text-accent underline">Random Forest + Extra Trees + Gradient Boosting: view training data, held-out metrics, plots and confusion matrix →</Link></Card>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Card title="Forecast model">
+        <Card title="Statistical fallback model">
           <p className="text-lg font-semibold">{quality.data?.version ?? "…"}</p>
           <p className="text-xs text-muted">3 candidates, inverse-MAE ensemble, rolling-origin validation</p>
         </Card>
@@ -99,7 +100,7 @@ export default function IntelligenceLab() {
                   <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "var(--surface-2)" }} />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
                   {MODELS.map((m, i) => (
-                    <Bar key={m} dataKey={m} name={m.replace("_", " ")} fill={C[i]} radius={[4, 4, 0, 0]} maxBarSize={28} />
+                    <Bar isAnimationActive={false} key={m} dataKey={m} name={m.replace("_", " ")} fill={C[i]} radius={[4, 4, 0, 0]} maxBarSize={28} />
                   ))}
                 </BarChart>
               </ResponsiveContainer>
@@ -119,7 +120,7 @@ export default function IntelligenceLab() {
                   <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "var(--surface-2)" }} />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
                   {MODELS.map((m, i) => (
-                    <Bar key={m} dataKey={m} name={m.replace("_", " ")} stackId="w" fill={C[i]} stroke="var(--surface)" strokeWidth={1} />
+                    <Bar isAnimationActive={false} key={m} dataKey={m} name={m.replace("_", " ")} stackId="w" fill={C[i]} stroke="var(--surface)" strokeWidth={1} />
                   ))}
                 </BarChart>
               </ResponsiveContainer>
@@ -149,7 +150,7 @@ export default function IntelligenceLab() {
                   <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "var(--surface-2)" }} formatter={(v) => `${v}%`} />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
                   {POLICIES.map((p, i) => (
-                    <Bar key={p} dataKey={p} name={p.replace("_", " ")} fill={C[i]} radius={[4, 4, 0, 0]} maxBarSize={28} />
+                    <Bar isAnimationActive={false} key={p} dataKey={p} name={p.replace("_", " ")} fill={C[i]} radius={[4, 4, 0, 0]} maxBarSize={28} />
                   ))}
                 </BarChart>
               </ResponsiveContainer>
@@ -195,7 +196,7 @@ export default function IntelligenceLab() {
                   <Tooltip contentStyle={tooltipStyle} />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
                   {regions.map((r, i) => (
-                    <Line key={r} dataKey={r.replace("region-", "")} stroke={C[i]} strokeWidth={2} dot={false} />
+                    <Line isAnimationActive={false} key={r} dataKey={r.replace("region-", "")} stroke={C[i]} strokeWidth={2} dot={false} />
                   ))}
                 </LineChart>
               </ResponsiveContainer>
@@ -211,8 +212,8 @@ export default function IntelligenceLab() {
                 <YAxis tick={axis} axisLine={false} tickLine={false} allowDecimals={false} />
                 <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "var(--surface-2)" }} />
                 <Legend wrapperStyle={{ fontSize: 12 }} />
-                <Bar dataKey="transit" name="nominal transit" fill={C[0]} radius={[4, 4, 0, 0]} maxBarSize={24} />
-                <Bar dataKey="delay" name="observed extra delay" fill={C[2]} radius={[4, 4, 0, 0]} maxBarSize={24} />
+                <Bar isAnimationActive={false} dataKey="transit" name="nominal transit" fill={C[0]} radius={[4, 4, 0, 0]} maxBarSize={24} />
+                <Bar isAnimationActive={false} dataKey="delay" name="observed extra delay" fill={C[2]} radius={[4, 4, 0, 0]} maxBarSize={24} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -232,7 +233,7 @@ export default function IntelligenceLab() {
                     <XAxis type="number" tick={axis} axisLine={false} tickLine={false} />
                     <YAxis type="category" dataKey="policy" tick={axis} width={100} axisLine={false} tickLine={false} />
                     <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "var(--surface-2)" }} />
-                    <Bar dataKey="shipped" name="litres shipped (test episodes)" fill={C[1]} radius={[0, 4, 4, 0]} maxBarSize={20} />
+                    <Bar isAnimationActive={false} dataKey="shipped" name="litres shipped (test episodes)" fill={C[1]} radius={[0, 4, 4, 0]} maxBarSize={20} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>

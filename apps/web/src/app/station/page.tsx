@@ -26,7 +26,7 @@ function RequestForm({ stationId, onBehalf }: { stationId: string; onBehalf: boo
     >
       <label className="text-xs text-muted">
         Fuel
-        <select value={fuel} onChange={(e) => setFuel(e.target.value as Fuel)} className="mt-1 w-full rounded border border-border bg-surface-2 px-2 py-1.5 text-sm text-text">
+        <select aria-label="Fuel" value={fuel} onChange={(e) => setFuel(e.target.value as Fuel)} className="mt-1 w-full rounded border border-border bg-surface-2 px-2 py-1.5 text-sm text-text">
           {FUELS.map((f) => (
             <option key={f}>{f}</option>
           ))}
@@ -34,11 +34,11 @@ function RequestForm({ stationId, onBehalf }: { stationId: string; onBehalf: boo
       </label>
       <label className="text-xs text-muted">
         Quantity (L)
-        <input type="number" min={500} max={20000} step={500} value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} className="mt-1 w-full rounded border border-border bg-surface-2 px-2 py-1.5 text-sm text-text" />
+        <input aria-label="Quantity (L)" type="number" min={500} max={20000} step={500} value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} className="mt-1 w-full rounded border border-border bg-surface-2 px-2 py-1.5 text-sm text-text" />
       </label>
       <label className="text-xs text-muted">
         Urgency
-        <select value={urgency} onChange={(e) => setUrgency(e.target.value as FuelRequest["urgency"])} className="mt-1 w-full rounded border border-border bg-surface-2 px-2 py-1.5 text-sm text-text">
+        <select aria-label="Urgency" value={urgency} onChange={(e) => setUrgency(e.target.value as FuelRequest["urgency"])} className="mt-1 w-full rounded border border-border bg-surface-2 px-2 py-1.5 text-sm text-text">
           <option value="routine">Routine: next regular delivery</option>
           <option value="urgent">Urgent: queue is building</option>
           <option value="emergency">Emergency: about to run dry</option>
@@ -53,16 +53,15 @@ function RequestForm({ stationId, onBehalf }: { stationId: string; onBehalf: boo
           {create.isPending ? "Submitting…" : onBehalf ? "Submit request on behalf of station" : "Submit fuel request"}
         </button>
         <p className="mt-1 text-xs text-muted">
-          A request raises this station&apos;s priority in the optimizer and sets a minimum delivery. If the forecast does not show a shortage, the resulting shipment is sent to an operator for review.
+          Your request goes to the manager of the depot that serves your station, who accepts (dispatches) or rejects it. It also raises your station&apos;s priority in the automatic planner.
         </p>
       </div>
     </form>
   );
 }
 
-function RequestRow({ r, canCancel, canDecline }: { r: FuelRequest; canCancel: boolean; canDecline: boolean }) {
+function RequestRow({ r, canCancel }: { r: FuelRequest; canCancel: boolean }) {
   const cancel = useAction<void>(`/requests/${r.id}/cancel`, `Request #${r.id} cancelled`);
-  const decline = useAction<{ reason: string }>(`/requests/${r.id}/decline`, `Request #${r.id} declined`);
   return (
     <li className="flex flex-wrap items-start justify-between gap-2 py-2 text-sm">
       <div>
@@ -78,11 +77,6 @@ function RequestRow({ r, canCancel, canDecline }: { r: FuelRequest; canCancel: b
         {canCancel && r.status === "OPEN" && (
           <button disabled={cancel.isPending} onClick={() => cancel.mutate()} className="rounded border border-border px-2 py-0.5 text-xs hover:bg-surface-2">
             Cancel
-          </button>
-        )}
-        {canDecline && (r.status === "OPEN" || r.status === "PLANNED") && (
-          <button disabled={decline.isPending} onClick={() => decline.mutate({ reason: "Declined by operator: no shortage projected" })} className="rounded border border-border px-2 py-0.5 text-xs hover:bg-surface-2">
-            Decline
           </button>
         )}
       </div>
@@ -120,7 +114,7 @@ export default function StationPortal() {
         {!isStation && (
           <label className="text-xs text-muted">
             Station
-            <select value={picked} onChange={(e) => setPicked(e.target.value)} className="ml-2 rounded border border-border bg-surface-2 px-2 py-1 text-sm text-text">
+            <select aria-label="Choose station" value={picked} onChange={(e) => setPicked(e.target.value)} className="ml-2 rounded border border-border bg-surface-2 px-2 py-1 text-sm text-text">
               {net.stations.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.name}
@@ -194,7 +188,7 @@ export default function StationPortal() {
             </div>
           )}
         </Card>
-        <Card title={operator ? "All station requests" : "My requests"}>
+        <Card title={operator ? "All station requests (depot managers decide; operator can override in the Depot Console)" : "My requests"}>
           {!session || session.role === "viewer" ? (
             <Empty>Sign in to see requests.</Empty>
           ) : mine.length === 0 ? (
@@ -202,7 +196,7 @@ export default function StationPortal() {
           ) : (
             <ul className="divide-y divide-border">
               {mine.map((r) => (
-                <RequestRow key={r.id} r={r} canCancel={isStation || operator} canDecline={operator} />
+                <RequestRow key={r.id} r={r} canCancel={isStation || operator} />
               ))}
             </ul>
           )}

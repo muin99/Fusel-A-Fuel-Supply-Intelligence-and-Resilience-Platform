@@ -86,7 +86,7 @@ export interface RiskRow {
   inTransit: number;
   stationOpen: boolean;
   assessment: { ticksToStockout: number | null; hoursToStockout: number | null; probability: number; expectedDemand: number; projectedMin: number };
-  forecast: { perTick?: number[]; lower?: number[]; upper?: number[]; drift?: boolean; version?: string; next: number[]; level: number; cv: number; confidence: number; samples: number };
+  forecast: { engine?: string; fallbackReason?: string | null; perTick?: number[]; lower?: number[]; upper?: number[]; drift?: boolean; version?: string; next: number[]; level: number; cv: number; confidence: number; samples: number };
 }
 export interface Recommendation {
   id: string;
@@ -111,6 +111,7 @@ export interface Recommendation {
     alternatives: { routeId: string; depotId: string; transitTicks: number; maxShipment: number; depotUsable: number }[];
     reviewReasons?: string[];
     requestId?: number | null;
+    shortfall?: { before: number; after: number } | null;
   };
   explanation: string | null;
   status: string;
@@ -179,6 +180,9 @@ export interface FuelRequest {
   allocationId: number | null;
   resolution: string | null;
   resolvedTick: number | null;
+  servingDepots?: string[];
+  routes?: { id: string; depotId: string; status: string; transitTicks: number; maxShipment: number }[];
+  modelView?: { stockoutProbability: number | null; hoursToStockout: number | null; inventory: number; inTransit: number; capacity: number; agrees: boolean | null } | null;
 }
 export interface CopilotAnswer {
   text: string;

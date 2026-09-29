@@ -59,9 +59,13 @@ export function forecastDemand(input: ForecastInput, horizon: number, alpha = 0.
     Math.max(0, priorPerTick(effective, new Date(input.startTime.getTime() + k * stepMs)) * lvl),
   );
 
-  // Confidence: more samples + lower dispersion => higher. Capped to [0.2, 0.98].
-  const sampleScore = Math.min(1, n / 48);
-  const confidence = Math.max(0.2, Math.min(0.98, 0.35 + 0.6 * sampleScore - Math.min(0.4, cv)));
+  // Confidence blends two sources, shifting weight to data as history accumulates:
+  //  - prior: the organizer-published profile is a good model (documented noise 8-12%)
+  //  - data:  dispersion of observed demand around the prior (spikes/shifts lower it)
+  const w = Math.min(1, n / 48);
+  const priorConfidence = Math.max(0.5, Math.min(0.85, 1 - 2.5 * (NOISE[input.profile] ?? 0.12)));
+  const dataConfidence = Math.max(0.2, Math.min(0.98, 0.98 - 1.5 * cv));
+  const confidence = Math.max(0.2, Math.min(0.98, w * dataConfidence + (1 - w) * priorConfidence));
   return { perTick, level: lvl, cv, confidence, samples: n };
 }
 
@@ -81,6 +85,11 @@ export interface StockoutAssessment {
   probability: number;
   expectedDemand: number;
   projectedMin: number;
+  /** which engine produced `probability`: trained operational ML or the analytic normal approximation */
+  engine?: 'ml' | 'analytic';
+  analyticProbability?: number;
+  /** ML estimate of hours to stockout (only when the classifier predicts a stockout) */
+  mlHoursToStockout?: number | null;
 }
 
 /**
@@ -121,4 +130,17 @@ export function assessStockout(
     expectedDemand: cumDemand,
     projectedMin,
   };
+}
+
+/** Expected litres of unmet demand over the horizon (mean forecast, tank never negative). */
+export function expectedShortfall(inventory: number, forecast: Pick<Forecast, 'perTick'>, arrivals: Map<number, number>): number {
+  let inv = inventory;
+  let short = 0;
+  forecast.perTick.forEach((d, idx) => {
+    inv += arrivals.get(idx + 1) ?? 0;
+    const served = Math.min(inv, d);
+    short += d - served;
+    inv -= served;
+  });
+  return short;
 }

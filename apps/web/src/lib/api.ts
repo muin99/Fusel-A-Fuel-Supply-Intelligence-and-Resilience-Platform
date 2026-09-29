@@ -4,9 +4,10 @@ const TOKEN_KEY = "fuelops.auth";
 
 export interface Session {
   token: string;
-  role: "operator" | "viewer" | "station";
+  role: "operator" | "viewer" | "station" | "depot";
   username: string;
   stationId?: string | null;
+  depotId?: string | null;
 }
 
 export const SESSION_EVENT = "fuelops:session";

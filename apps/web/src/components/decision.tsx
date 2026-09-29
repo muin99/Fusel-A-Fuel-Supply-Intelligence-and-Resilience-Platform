@@ -49,10 +49,22 @@ export function DecisionCard({ rec, showLink = true }: { rec: Recommendation; sh
             {liters(rec.quantity)} {rec.fuelType} → {rec.stationId.replace("station-", "")}
           </div>
           <div className="text-xs text-muted">
-            from {rec.depotId.replace("depot-", "")} via {rec.routeId} · {rec.rationale.transitTicks} ticks · stockout risk{" "}
-            <span className="font-medium text-text tabular-nums">
-              {pct(rec.riskBefore)} → {pct(rec.riskAfter)}
-            </span>
+            from {rec.depotId.replace("depot-", "")} via {rec.routeId} · {rec.rationale.transitTicks} ticks ·{" "}
+            {rec.rationale.shortfall ? (
+              <>
+                expected shortfall (6 h){" "}
+                <span className="font-medium text-text tabular-nums">
+                  {liters(rec.rationale.shortfall.before)} → <span className="text-ok">{liters(rec.rationale.shortfall.after)}</span>
+                </span>
+              </>
+            ) : (
+              <>
+                stockout risk{" "}
+                <span className="font-medium text-text tabular-nums">
+                  {pct(rec.riskBefore)} → {pct(rec.riskAfter)}
+                </span>
+              </>
+            )}
             {rec.hoursToStockout !== null && <> · empty in {hours(rec.hoursToStockout)}</>}
           </div>
         </div>

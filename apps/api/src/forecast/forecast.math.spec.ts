@@ -22,12 +22,12 @@ describe('forecast math', () => {
     expect(busy / quiet).toBeCloseTo(1.45 / 0.7, 5);
   });
 
-  it('cold start uses the prior and low confidence', () => {
+  it('cold start uses the prior with prior-based confidence', () => {
     const f = forecastDemand({ ...base, history: [] }, 4);
     expect(f.samples).toBe(0);
     expect(f.level).toBe(1);
     expect(f.perTick[0]).toBeCloseTo(priorPerTick(base, base.startTime), 5);
-    expect(f.confidence).toBeLessThan(0.5);
+    expect(f.confidence).toBeCloseTo(0.75, 2); // urban_high noise 0.10 → 1 - 2.5·0.10
   });
 
   it('learns a demand spike from history', () => {
@@ -53,5 +53,14 @@ describe('forecast math', () => {
     const a = assessStockout(250, f, new Map([[2, 1000]]), 15);
     expect(a.ticksToStockout).toBeNull();
     expect(a.probability).toBeLessThan(0.01);
+  });
+});
+
+describe('expected shortfall', () => {
+  it('counts litres short and credits arrivals', async () => {
+    const { expectedShortfall } = await import('./forecast.math.js');
+    const f = { perTick: [100, 100, 100, 100] };
+    expect(expectedShortfall(150, f, new Map())).toBe(250);
+    expect(expectedShortfall(150, f, new Map([[2, 300]]))).toBe(0);
   });
 });

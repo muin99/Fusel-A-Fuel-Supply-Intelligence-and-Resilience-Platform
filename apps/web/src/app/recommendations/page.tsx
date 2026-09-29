@@ -58,9 +58,21 @@ function Inspector({ rec }: { rec: Recommendation }) {
         <DecisionButtons rec={rec} size="md" />
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         <div className="rounded bg-surface-2 p-2">
-          <div className="text-xs text-muted">Stockout risk (6 h)</div>
+          <div className="text-xs text-muted">Expected shortfall (6 h)</div>
+          <div className="font-semibold tabular-nums">
+            {rec.rationale.shortfall ? (
+              <>
+                {liters(rec.rationale.shortfall.before)} → <span className="text-ok">{liters(rec.rationale.shortfall.after)}</span>
+              </>
+            ) : (
+              "n/a (model offline)"
+            )}
+          </div>
+        </div>
+        <div className="rounded bg-surface-2 p-2">
+          <div className="text-xs text-muted">P(any stockout, 6 h)</div>
           <div className="font-semibold tabular-nums">
             {pct(rec.riskBefore)} → <span className="text-ok">{pct(rec.riskAfter)}</span>
           </div>

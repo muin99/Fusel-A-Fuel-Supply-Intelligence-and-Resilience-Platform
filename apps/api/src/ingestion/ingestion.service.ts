@@ -20,6 +20,8 @@ export class IngestionService {
   private checkedRun = false;
   private groupReady = false;
   private draining = false;
+  /** last tick already copied from /v1/demand-history (reset with the run) */
+  private lastIngestedTick = -1;
 
   constructor(
     private readonly sim: SimulatorClient,
@@ -74,7 +76,7 @@ export class IngestionService {
         if (max !== null && max > snapshot.instance.tick) await this.purge('history ahead of simulator at boot');
         this.checkedRun = true;
       }
-      await Promise.all([this.ingestDemand(), this.snapshotInventory(snapshot)]);
+      await Promise.all([this.ingestDemand(snapshot.instance.tick), this.snapshotInventory(snapshot)]);
       this.events.emit('history.updated', { tick: snapshot.instance.tick });
     } catch (e) {
       this.log.warn(`ingestion failed: ${(e as Error).message}`);
@@ -94,15 +96,18 @@ export class IngestionService {
 
   /** History is per simulation run; a reset starts a new run. */
   private async purge(reason: string) {
+    this.lastIngestedTick = -1;
     await this.demand.clear();
     await this.inventory.clear();
     this.log.warn(`Cleared demand/inventory history (${reason})`);
   }
 
-  private async ingestDemand() {
-    // 12 rows/tick; 240 covers ~20 ticks of catch-up at high simulation speed.
-    const { data, stale } = await this.sim.demandHistory({ limit: 240 });
+  private async ingestDemand(tick: number) {
+    // 12 rows per tick: only fetch what is new since the last ingest (bounded catch-up).
+    const limit = Math.min(2000, Math.max(24, 12 * (tick - this.lastIngestedTick + 1)));
+    const { data, stale } = await this.sim.demandHistory({ limit });
     if (stale || data.length === 0) return;
+    this.lastIngestedTick = Math.max(...data.map((d) => d.tick));
     await this.demand
       .createQueryBuilder()
       .insert()

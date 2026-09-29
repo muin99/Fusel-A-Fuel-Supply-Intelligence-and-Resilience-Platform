@@ -7,7 +7,7 @@ import { SimulatorClient } from '../simulator/simulator.client.js';
 import type { NetworkSnapshot } from './state.types.js';
 
 const CACHE_KEY = 'network:snapshot';
-const MIN_REFRESH_GAP_MS = 400;
+const MIN_REFRESH_GAP_MS = 1000;
 
 /**
  * Keeps the latest NetworkSnapshot.

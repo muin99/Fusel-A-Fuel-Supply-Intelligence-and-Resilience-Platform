@@ -1,5 +1,5 @@
 import { ZodBody } from '../common/zod-swagger.js';
-import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Post, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -21,6 +21,11 @@ const LoginSchema = z
   .refine((b) => b.role !== 'station' || !!b.stationId, { message: 'stationId is required for station managers', path: ['stationId'] })
   .refine((b) => b.role !== 'depot' || !!b.depotId, { message: 'depotId is required for depot managers', path: ['depotId'] });
 
+const DemoSchema = z
+  .object({ role: z.enum(['operator', 'viewer', 'station', 'depot']), stationId: z.string().optional(), depotId: z.string().optional() })
+  .refine((b) => b.role !== 'station' || !!b.stationId, { path: ['stationId'], message: 'stationId required' })
+  .refine((b) => b.role !== 'depot' || !!b.depotId, { path: ['depotId'], message: 'depotId required' });
+
 function safeEqual(a: string, b: string) {
   const ab = Buffer.from(a);
   const bb = Buffer.from(b);
@@ -36,6 +41,30 @@ export class AuthController {
     private readonly config: ConfigService<Env, true>,
     private readonly state: StateService,
   ) {}
+
+  /** Tells the UI whether one-click demo role switching is enabled. */
+  @Get('config')
+  authConfig() {
+    return { demoMode: this.config.get('DEMO_MODE', { infer: true }) };
+  }
+
+  /**
+   * DEMO_MODE only: issue a role token without a password so a presenter can switch
+   * between operator / depot manager / station manager instantly. Permissions per role
+   * are still enforced by the same guards. Returns 404 when demo mode is off.
+   */
+  @Throttle({ default: { limit: 120, ttl: 60_000 } })
+  @Post('demo')
+  async demo(@Body() body: unknown) {
+    if (!this.config.get('DEMO_MODE', { infer: true })) throw new NotFoundException();
+    const { role, stationId, depotId } = DemoSchema.parse(body);
+    const snapshot = this.state.current();
+    if (role === 'station' && snapshot && !snapshot.stations.some((s) => s.id === stationId)) throw new UnauthorizedException('Unknown station');
+    if (role === 'depot' && snapshot && !snapshot.depots.some((d) => d.id === depotId)) throw new UnauthorizedException('Unknown depot');
+    const username = role === 'station' ? `${stationId}-manager` : role === 'depot' ? `${depotId}-manager` : role;
+    const claims = { sub: username, role: role as Role, ...(role === 'station' ? { stationId } : {}), ...(role === 'depot' ? { depotId } : {}) };
+    return { token: await this.jwt.signAsync(claims), role, username, stationId: claims.stationId ?? null, depotId: claims.depotId ?? null };
+  }
 
   @Throttle({ default: { limit: 10, ttl: 60_000 } })
   @ApiOperation({ summary: 'Get a JWT. Paste the token into Authorize (top right) to call operator endpoints.' })

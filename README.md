@@ -83,3 +83,7 @@ pnpm --filter web exec playwright test   # browser workflow against running stac
 python3 scripts/train_policy.py          # deterministic offline RL benchmark
 ```
 See [deployment options](docs/10-deployment.md) for Helm, Terraform, GitOps, frontend canary/blue-green, autoscaling and rollback.
+
+## Trained forecasting
+
+Open **Trained ML Evidence** (`/ml`) for the Random Forest, Extra Trees and Gradient Boosting ensemble, held-out synthetic metrics, plots and stockout confusion matrix. See [training and evaluation](docs/11-trained-ml.md). Runtime inference is local to Node; the original forecast remains an automatic fallback.

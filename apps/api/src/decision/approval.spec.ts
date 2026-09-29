@@ -102,6 +102,10 @@ describe('management by exception', () => {
   it('routine, confident, same-region recommendation needs no review', () => {
     expect(reviewReasons({ policy: 'lp_optimizer', confidence: 0.8, depotId: 'depot-a', stationId: 'station-a' }, snapshot(), 0.6)).toEqual([]);
   });
+  it('anomalous demand is always an operator decision', () => {
+    const reasons = reviewReasons({ policy: 'lp_optimizer', confidence: 0.9, depotId: 'depot-a', stationId: 'station-a', demandLevel: 2.0 }, snapshot(), 0.6);
+    expect(reasons.some((r) => r.startsWith('Anomalous demand'))).toBe(true);
+  });
   it('low confidence, fallback policy and cross-region transfers go to the operator', () => {
     const reasons = reviewReasons({ policy: 'heuristic_fallback', confidence: 0.3, depotId: 'depot-b', stationId: 'station-a' }, snapshot(), 0.6);
     expect(reasons).toHaveLength(3);

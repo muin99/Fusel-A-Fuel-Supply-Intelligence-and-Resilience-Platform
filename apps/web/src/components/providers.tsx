@@ -86,7 +86,7 @@ export function Providers({ children }: { children: ReactNode }) {
       new QueryClient({
         defaultOptions: {
           // polling backstop in case the push stream is down
-          queries: { refetchInterval: 8_000, retry: 1, staleTime: 1000, refetchOnWindowFocus: false },
+          queries: { refetchInterval: 8_000, refetchIntervalInBackground: false, retry: 1, staleTime: 2000, refetchOnWindowFocus: false },
         },
       }),
   );

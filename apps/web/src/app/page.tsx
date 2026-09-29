@@ -40,6 +40,7 @@ export default function Operations() {
   const router = useRouter();
   useEffect(() => {
     if (session?.role === "station") router.replace("/station");
+    if (session?.role === "depot") router.replace("/depot");
   }, [session, router]);
   const { data: net, error, isLoading } = useNetwork();
   const { data: risk } = useRisk();
@@ -107,7 +108,7 @@ export default function Operations() {
           {!session && (
             <div className="mb-3 rounded border border-accent/40 bg-accent/5 p-3">
               <p className="mb-2 text-sm">
-                <strong>You are viewing as a guest.</strong> Sign in as an <em>operator</em> to approve or reject dispatches, or as a <em>station manager</em> to request fuel.
+                <strong>You are viewing as a guest.</strong> Sign in as the <em>operator</em> (system owner: exceptions, anomalies, autopilot), a <em>depot manager</em> (accept or reject station requests) or a <em>station manager</em> (request fuel).
               </p>
               <SignInPanel compact />
             </div>
@@ -148,7 +149,7 @@ export default function Operations() {
               </ul>
             )}
           </Card>
-          <Card title="Station requests" action={<Link href="/station" className="text-xs text-accent">portal →</Link>}>
+          <Card title="Station requests (handled by depot managers)" action={<Link href="/depot" className="text-xs text-accent">depot console →</Link>}>
             {!session ? (
               <Empty>Sign in to see station requests.</Empty>
             ) : activeRequests.length === 0 ? (
@@ -162,7 +163,7 @@ export default function Operations() {
                     </span>
                     <span className="flex gap-1">
                       <Badge tone={r.urgency === "emergency" ? "crit" : r.urgency === "urgent" ? "warn" : "muted"}>{r.urgency}</Badge>
-                      <Badge tone={r.status === "PLANNED" ? "info" : "warn"}>{r.status}</Badge>
+                      <Badge tone={r.status === "PLANNED" ? "info" : "warn"}>{r.status === "OPEN" ? "awaiting depot" : r.status}</Badge>
                     </span>
                   </li>
                 ))}

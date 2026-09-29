@@ -53,7 +53,10 @@ export class SimulatorStream implements OnModuleInit, OnModuleDestroy {
     this.abort = new AbortController();
     const url = `${this.config.get('SIMULATOR_URL', { infer: true })}/v1/stream`;
     const res = await fetch(url, { signal: this.abort.signal, headers: { Accept: 'text/event-stream' } });
-    if (!res.ok || !res.body) throw new Error(`stream HTTP ${res.status}`);
+    if (!res.ok || !res.body) {
+      await res.body?.cancel().catch(() => undefined);
+      throw new Error(`stream HTTP ${res.status}`);
+    }
 
     this.setConnected(true);
     this.events.emit('sim.stream.reconnected', {});
@@ -78,7 +81,11 @@ export class SimulatorStream implements OnModuleInit, OnModuleDestroy {
         watchdog = setTimeout(() => this.abort?.abort(), 45000);
         parser.feed(decoder.decode(chunk, { stream: true }));
       }
-    } finally { clearTimeout(watchdog); }
+    } finally {
+      clearTimeout(watchdog);
+      // Always release the HTTP connection (each open stream holds a simulator DB session).
+      this.abort?.abort();
+    }
     throw new Error('stream ended');
   }
 

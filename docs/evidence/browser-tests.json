@@ -71,7 +71,7 @@
       "line": 0,
       "specs": [
         {
-          "title": "operator can inspect intelligence, evaluate and compare policies",
+          "title": "guest sees live operations and is told how to act",
           "ok": true,
           "tags": [],
           "tests": [
@@ -86,12 +86,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3866,
+                  "duration": 757,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-29T06:39:28.745Z",
+                  "startTime": "2026-09-29T08:35:40.049Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -99,18 +99,18 @@
               "status": "expected"
             }
           ],
-          "id": "fa8fc8ea9923860b26f6-f93ad0d23ce65f45280f",
+          "id": "fa8fc8ea9923860b26f6-07af529c712d59c37573",
           "file": "judge.spec.ts",
-          "line": 4,
+          "line": 27,
           "column": 5
         },
         {
-          "title": "operator pages render without client errors",
+          "title": "operator: decision queue, approve/reject visible, copilot answers with tools",
           "ok": true,
           "tags": [],
           "tests": [
             {
-              "timeout": 60000,
+              "timeout": 120000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -120,12 +120,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5785,
+                  "duration": 6490,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-29T06:39:33.252Z",
+                  "startTime": "2026-09-29T08:35:41.174Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -133,13 +133,47 @@
               "status": "expected"
             }
           ],
-          "id": "fa8fc8ea9923860b26f6-16eb5f6b0b0b8ee7a926",
+          "id": "fa8fc8ea9923860b26f6-083a24e655a43704a365",
           "file": "judge.spec.ts",
-          "line": 21,
+          "line": 38,
           "column": 5
         },
         {
-          "title": "mobile navigation remains usable",
+          "title": "station manager requests fuel; depot manager accepts it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2332,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-29T08:35:47.677Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fa8fc8ea9923860b26f6-459e0d4ea17d277cf424",
+          "file": "judge.spec.ts",
+          "line": 57,
+          "column": 5
+        },
+        {
+          "title": "intelligence lab renders real model plots",
           "ok": true,
           "tags": [],
           "tests": [
@@ -154,12 +188,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1283,
+                  "duration": 4117,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-29T06:39:39.073Z",
+                  "startTime": "2026-09-29T08:35:50.018Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -167,9 +201,77 @@
               "status": "expected"
             }
           ],
-          "id": "fa8fc8ea9923860b26f6-7d0c30574a129368a501",
+          "id": "fa8fc8ea9923860b26f6-da64643863c4634485d5",
           "file": "judge.spec.ts",
-          "line": 32,
+          "line": 88,
+          "column": 5
+        },
+        {
+          "title": "every page renders without client errors (desktop + mobile)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2683,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-29T08:35:54.148Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fa8fc8ea9923860b26f6-56ef86ade958a6b50f31",
+          "file": "judge.spec.ts",
+          "line": 102,
+          "column": 5
+        },
+        {
+          "title": "demo guide runs the whole storyline and shows impact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 49455,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-29T08:35:56.857Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fa8fc8ea9923860b26f6-422ff71a2fb925100fb6",
+          "file": "judge.spec.ts",
+          "line": 116,
           "column": 5
         }
       ]
@@ -177,9 +279,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-29T06:39:27.858Z",
-    "duration": 12662.103,
-    "expected": 3,
+    "startTime": "2026-09-29T08:35:39.488Z",
+    "duration": 66957.76000000001,
+    "expected": 6,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

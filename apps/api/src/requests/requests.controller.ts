@@ -13,8 +13,9 @@ const CreateSchema = z.object({
   note: z.string().max(300).optional(),
 });
 const DeclineSchema = z.object({ reason: z.string().min(3).max(300) });
+const AcceptSchema = z.object({ routeId: z.string().optional(), quantity: z.number().int().min(500).max(20_000).optional() });
 
-/** Station-manager fuel requests: the "customer side" demand signal into the decision engine. */
+/** Station fuel requests: station managers raise them, depot managers accept or reject, operators oversee. */
 @ApiTags('requests')
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
@@ -40,7 +41,15 @@ export class RequestsController {
     return this.requests.cancel(id, req.user);
   }
 
-  @Roles('operator')
+  /** Depot manager (or operator override) accepts: dispatch from the depot now. */
+  @Roles('depot', 'operator')
+  @ZodBody(AcceptSchema, { routeId: 'route-gazipur-mirpur', quantity: 4000 })
+  @Post(':id/accept')
+  accept(@Param('id', ParseIntPipe) id: number, @Body() body: unknown, @Req() req: AuthedRequest) {
+    return this.requests.accept(id, req.user, AcceptSchema.parse(body ?? {}));
+  }
+
+  @Roles('depot', 'operator')
   @ZodBody(DeclineSchema, { reason: 'Station tank is above 80%; no shortage projected' })
   @Post(':id/decline')
   decline(@Param('id', ParseIntPipe) id: number, @Body() body: unknown, @Req() req: AuthedRequest) {

@@ -15,11 +15,12 @@ import { SimulatorClient } from '../simulator/simulator.client.js';
 import type { NetworkSnapshot } from '../state/state.types.js';
 import { StateService } from '../state/state.service.js';
 import { RequestsService } from '../requests/requests.service.js';
-import { Problem, Proposal, alternatives, buildProblem, heuristicPolicy, lpPolicy, riskAfter } from './policies.js';
+import { blockingReasons, reviewReasons } from './feasibility.js';
+import { Problem, Proposal, alternatives, buildProblem, heuristicPolicy, lpPolicy, riskAfter, shortfallImpact } from './policies.js';
+
+export { MAX_REC_AGE_TICKS, blockingReasons, reviewReasons } from './feasibility.js';
 
 const PIPELINE_MIN_GAP_MS = 2000;
-/** A recommendation older than this (in ticks) must be re-planned, not approved. */
-export const MAX_REC_AGE_TICKS = 16;
 const MAX_DISPATCH_ATTEMPTS = 5;
 
 /** Decisions only need recomputing when something decision-relevant changed. */
@@ -36,51 +37,6 @@ function worldKey(s: NetworkSnapshot, predictionUp: boolean, forced: string | nu
   ].join('|');
 }
 const OPEN: Recommendation['status'][] = ['PROPOSED', 'NEEDS_REVIEW'];
-
-/**
- * Hard feasibility gate, checked against the CURRENT simulator state immediately before
- * dispatch (mirrors the simulator's own validation order). Any reason blocks dispatch.
- */
-export function blockingReasons(
-  rec: Pick<Recommendation, 'stationId' | 'fuelType' | 'depotId' | 'routeId' | 'quantity' | 'tick'>,
-  s: NetworkSnapshot,
-  problem?: Problem,
-): string[] {
-  const reasons: string[] = [];
-  if (s.meta.stale || s.meta.degraded) reasons.push('STALE_STATE: simulator data is stale; wait for fresh data');
-  if (s.instance.tick - rec.tick > MAX_REC_AGE_TICKS) reasons.push(`EXPIRED: planned at tick ${rec.tick}, now ${s.instance.tick}; use the refreshed recommendation`);
-  const route = s.routes.find((r) => r.id === rec.routeId);
-  const station = s.stations.find((x) => x.id === rec.stationId);
-  const depot = s.depots.find((d) => d.id === rec.depotId);
-  const fuel = rec.fuelType as 'DIESEL' | 'PETROL' | 'OCTANE';
-  if (!route || !station || !depot) return [...reasons, 'NOT_FOUND: unknown route, station or depot'];
-  if (route.source_depot_id !== depot.id || route.destination_station_id !== station.id) reasons.push('ROUTE_MISMATCH');
-  if (station.status !== 'OPEN') reasons.push(`STATION_CLOSED: ${station.name} is ${station.status}`);
-  if (route.status !== 'AVAILABLE') reasons.push(`ROUTE_DISRUPTED: ${route.id} is ${route.status}`);
-  if (rec.quantity > route.max_shipment) reasons.push(`ROUTE_CAPACITY_EXCEEDED: max ${route.max_shipment} L`);
-  if (rec.quantity > depot.inventory[fuel]) reasons.push(`INSUFFICIENT_INVENTORY: ${depot.id} has ${Math.round(depot.inventory[fuel])} L ${fuel}`);
-  if (problem && rec.quantity > (problem.dispatchRemaining.get(depot.id) ?? 0) + 1e-6)
-    reasons.push(`DISPATCH_CAPACITY_EXCEEDED: ${Math.round(problem.dispatchRemaining.get(depot.id) ?? 0)} L left this tick at ${depot.id}`);
-  if (station.inventory[fuel] + rec.quantity > station.capacity[fuel])
-    reasons.push(`DESTINATION_CAPACITY_EXCEEDED: ${station.name} ${fuel} would exceed ${station.capacity[fuel]} L`);
-  return reasons;
-}
-
-/** Why a feasible recommendation still needs a human (management by exception). */
-export function reviewReasons(
-  p: { policy: string; confidence: number; depotId: string; stationId: string; requestOnly?: boolean },
-  s: NetworkSnapshot,
-  minConfidence: number,
-): string[] {
-  const reasons: string[] = [];
-  if (p.requestOnly) reasons.push('Requested by the station, but the model projects no shortage: confirm before dispatch');
-  if (p.policy.includes('fallback')) reasons.push('Prediction model offline: produced by the fallback reorder rule');
-  if (p.confidence < minConfidence) reasons.push(`Forecast confidence ${(p.confidence * 100).toFixed(0)}% is below the ${(minConfidence * 100).toFixed(0)}% autopilot threshold`);
-  const depotRegion = s.depots.find((d) => d.id === p.depotId)?.region_id;
-  const stationRegion = s.stations.find((x) => x.id === p.stationId)?.region_id;
-  if (depotRegion && stationRegion && depotRegion !== stationRegion) reasons.push("Cross-region transfer: draws on the other region's depot and takes longer");
-  return reasons;
-}
 
 /**
  * The Observe → Detect → Predict → Decide → Act loop.
@@ -203,7 +159,11 @@ export class DecisionService {
       const confidence = r ? r.forecast.confidence : 0.5;
       const prev = byTarget.get(`${p.stationId}|${p.fuel}|${p.routeId}`);
       byTarget.delete(`${p.stationId}|${p.fuel}|${p.routeId}`);
-      const review = reviewReasons({ policy, confidence, depotId: p.depotId, stationId: p.stationId, requestOnly: p.need.requestOnly }, s, this.minConfidence);
+      const review = reviewReasons(
+        { policy, confidence, depotId: p.depotId, stationId: p.stationId, demandLevel: r?.forecast.level ?? null, drift: (r?.forecast as { drift?: boolean } | undefined)?.drift ?? false },
+        s,
+        this.minConfidence,
+      );
       const rec = this.recs.create({
         ...(prev ? { id: prev.id, createdAt: prev.createdAt } : {}),
         tick: s.instance.tick,
@@ -226,6 +186,7 @@ export class DecisionService {
           alternatives: alternatives(p, problem),
           reviewReasons: review,
           requestId: p.need.requestId ?? null,
+          shortfall: shortfallImpact(p, r),
         },
         status: review.length ? 'NEEDS_REVIEW' : 'PROPOSED',
       });

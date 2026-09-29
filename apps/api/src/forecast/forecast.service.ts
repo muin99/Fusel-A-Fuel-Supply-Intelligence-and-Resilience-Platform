@@ -1,4 +1,4 @@
-import { ensembleForecast } from './ensemble.js';
+import { trainedForecast } from './trained.js';
 import { Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { FUEL_TYPES, FuelType, parseSimTime } from '../simulator/simulator.schemas.js';
@@ -6,6 +6,7 @@ import { IngestionService } from '../ingestion/ingestion.service.js';
 import { MetricsService } from '../metrics/metrics.service.js';
 import type { NetworkSnapshot } from '../state/state.types.js';
 import { Forecast, StockoutAssessment, assessStockout } from './forecast.math.js';
+import { inventoryFeatures, predict } from './operational.js';
 
 export const HORIZON_TICKS = 24; // 6 simulated hours at 15-min ticks
 
@@ -88,7 +89,7 @@ export class ForecastService {
         }));
         this.trackError(st.id, fuel, history);
 
-        const forecast = ensembleForecast(
+        const forecast = trainedForecast(
           {
             profile: st.demand_profile,
             fuel,
@@ -114,7 +115,19 @@ export class ForecastService {
           inTransit += a.quantity;
         }
 
-        const assessment = assessStockout(st.inventory[fuel], forecast, arrivals, tickMinutes);
+        const assessment: StockoutAssessment = assessStockout(st.inventory[fuel], forecast, arrivals, tickMinutes);
+        // Trained operational ML: P(stockout in 6 h) and conditional time-to-stockout.
+        try {
+          const arr = Array.from({ length: 24 }, (_, k) => arrivals.get(k + 1) ?? 0);
+          const feats = inventoryFeatures(st.inventory[fuel], forecast.perTick.slice(0, 24), arr, forecast.cv);
+          const p = Math.min(1, Math.max(0, predict('stockout_probability', feats)));
+          assessment.analyticProbability = assessment.probability;
+          assessment.probability = p;
+          assessment.engine = 'ml';
+          assessment.mlHoursToStockout = p >= 0.5 ? Math.max(0, Math.round(predict('stockout_time', feats) * 10) / 10) : null;
+        } catch {
+          assessment.engine = 'analytic';
+        }
         confidences.push(forecast.confidence);
         items.push({
           stationId: st.id,

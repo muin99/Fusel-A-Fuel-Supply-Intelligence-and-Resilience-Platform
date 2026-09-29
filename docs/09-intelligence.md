@@ -1,8 +1,10 @@
 # Intelligence implementation and limits
 
-## Operational model
+The operational forecasting layer now uses trained Random Forest, Extra Trees and Gradient Boosting trees. See [trained forecasting evidence](11-trained-ml.md). The adaptive statistical ensemble below remains the automatic fallback and its live diagnostics are retained in Intelligence Lab.
 
-The platform runs an adaptive ensemble (`adaptive-ensemble-2.0.0`) per station and fuel. Its candidates are seasonal EWMA, a recent local mean, and a seasonal level regression. Last-24 rolling-origin targets are predicted using only earlier observations; inverse candidate MAE determines weights. At cold start the seasonal prior receives all weight. Priors come from the organizer integration guide, not invented external data.
+## Statistical fallback model
+
+The original fallback runs an adaptive ensemble (`adaptive-ensemble-2.0.0`) per station and fuel. Its candidates are seasonal EWMA, a recent local mean, and a seasonal level regression. Last-24 rolling-origin targets are predicted using only earlier observations; inverse candidate MAE determines weights. At cold start the seasonal prior receives all weight. Priors come from the organizer integration guide, not invented external data.
 
 Weighted 90th-percentile candidate residuals form empirical bounds, widened by square-root horizon and by 1.5 under drift. These are **not a calibrated conformal coverage guarantee**: residual windows are short, correlated and also used for model weighting. The risk engine retains an approximate normal cumulative-demand model; its displayed probability is a planning estimate. Confidence is a heuristic based on sample count and dispersion, capped at 0.55 when normalized recent demand shifts more than 30% against its reference window.
 

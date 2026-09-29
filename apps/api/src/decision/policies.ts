@@ -1,5 +1,5 @@
 import solver from 'javascript-lp-solver';
-import { assessStockout } from '../forecast/forecast.math.js';
+import { assessStockout, expectedShortfall } from '../forecast/forecast.math.js';
 import type { RiskItem } from '../forecast/forecast.service.js';
 import { FUEL_TYPES, FuelType, Route } from '../simulator/simulator.schemas.js';
 import type { NetworkSnapshot } from '../state/state.types.js';
@@ -13,8 +13,6 @@ export interface Need {
   riskBefore: number;
   hoursToStockout: number | null;
   signals: Record<string, number | string | null>;
-  /** set when only a station request (not the model) justifies this need */
-  requestOnly?: boolean;
   requestId?: number;
 }
 
@@ -282,6 +280,15 @@ export function riskAfter(prop: Proposal, risk: RiskItem | undefined, tickMinute
   const k = 1 + prop.transitTicks;
   arrivals.set(k, (arrivals.get(k) ?? 0) + prop.quantity);
   return assessStockout(risk.inventory, risk.forecast, arrivals, tickMinutes).probability;
+}
+
+/** Expected 6 h shortfall (litres) without and with the proposal: the operator-facing impact. */
+export function shortfallImpact(prop: Proposal, risk: RiskItem | undefined): { before: number; after: number } | null {
+  if (!risk) return null;
+  const after = new Map(risk.arrivals);
+  const k = 1 + prop.transitTicks;
+  after.set(k, (after.get(k) ?? 0) + prop.quantity);
+  return { before: Math.round(expectedShortfall(risk.inventory, risk.forecast, risk.arrivals)), after: Math.round(expectedShortfall(risk.inventory, risk.forecast, after)) };
 }
 
 /** Other feasible ways to serve the same need — shown to the operator as alternatives. */

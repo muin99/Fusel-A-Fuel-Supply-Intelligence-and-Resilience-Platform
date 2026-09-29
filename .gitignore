@@ -16,3 +16,5 @@ loadtest/results/*
 *.tfplan
 playwright-report/
 test-results/
+
+.venv-ml/

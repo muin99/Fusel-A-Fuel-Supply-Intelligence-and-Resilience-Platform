@@ -34,6 +34,7 @@ export interface SimResult<T> {
 }
 
 const RETRYABLE_STATUS = new Set([502, 503, 504]);
+const MAX_IN_FLIGHT = 4;
 
 /**
  * The ONLY component that talks to the simulator.
@@ -190,8 +191,28 @@ export class SimulatorClient {
   }
 
   /** breaker + retry + metrics around one logical call */
+  /**
+   * Bulkhead: never more than MAX_IN_FLIGHT concurrent requests to the simulator, so our own
+   * refreshes, retries and user traffic cannot exhaust its connection pool (retry storms).
+   */
+  private inFlight = 0;
+  private readonly waiters: (() => void)[] = [];
+  private async acquire() {
+    if (this.inFlight < MAX_IN_FLIGHT) {
+      this.inFlight++;
+      return;
+    }
+    await new Promise<void>((resolve) => this.waiters.push(resolve));
+  }
+  private release() {
+    const next = this.waiters.shift();
+    if (next) next();
+    else this.inFlight--;
+  }
+
   private async call<T>(endpoint: string, fn: () => Promise<T>): Promise<T> {
     const end = this.metrics.simDuration.startTimer({ endpoint });
+    await this.acquire();
     try {
       const result = (await this.breaker.fire(() => this.withRetry(fn))) as T;
       this.metrics.simRequests.inc({ endpoint, outcome: 'ok' });
@@ -204,6 +225,7 @@ export class SimulatorClient {
       }
       throw err;
     } finally {
+      this.release();
       end();
     }
   }

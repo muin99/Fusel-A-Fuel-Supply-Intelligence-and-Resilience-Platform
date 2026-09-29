@@ -11,7 +11,9 @@ describe('adaptive ensemble', () => {
   it('cold start stays finite, conservative and nonnegative', () => {
     const f = ensembleForecast({ ...base, history: [] }, 24);
     expect(f.perTick.every((x) => Number.isFinite(x) && x >= 0)).toBe(true);
-    expect(f.confidence).toBeLessThan(0.5);
+    // cold start leans on the published profile prior: usable, but below data-backed confidence
+    expect(f.confidence).toBeGreaterThanOrEqual(0.6);
+    expect(f.confidence).toBeLessThanOrEqual(0.85);
     expect(f.validationSamples).toBe(0);
   });
   it('learns normalized weights and orders interval bounds', () => {

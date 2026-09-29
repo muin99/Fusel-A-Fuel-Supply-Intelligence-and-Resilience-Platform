@@ -20,6 +20,9 @@ export const envSchema = z.object({
   /** shared password for depot-manager logins (each login is scoped to one depot) */
   DEPOT_PASSWORD: z.string().min(1).default('depot'),
 
+  /** Demo mode: one-click role switching without passwords (roles/permissions still enforced). Never enable in production. */
+  DEMO_MODE: z.enum(['true', 'false']).default('false').transform((v) => v === 'true'),
+
   GPT_API_KEY: z.string().optional(),
   OPENAI_API_KEY: z.string().optional(),
   OPENAI_MODEL: z.string().default('gpt-4.1-mini'),

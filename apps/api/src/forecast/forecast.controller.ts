@@ -4,6 +4,7 @@ import { StateService } from '../state/state.service.js';
 import { FUEL_TYPES } from '../simulator/simulator.schemas.js';
 import { ForecastService } from './forecast.service.js';
 import { networkRunway } from './runway.js';
+import { trainedModelInfo } from './trained.js';
 
 @ApiTags('intelligence')
 @Controller('forecast')
@@ -12,6 +13,9 @@ export class ForecastController {
     private readonly forecast: ForecastService,
     private readonly state: StateService,
   ) {}
+
+  @Get('trained-model')
+  trainedModel() { return trainedModelInfo(); }
 
   /** Network fuel runway per fuel (all stock + scheduled supply vs forecast demand). */
   @Get('runway')

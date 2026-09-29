@@ -38,7 +38,7 @@ export default function ForecastPage() {
               />
               <Legend wrapperStyle={{ fontSize: 12, color: "var(--muted)" }} />
               {FUELS.map((f) => (
-                <Bar key={f} dataKey={f} fill={FUEL_VAR[f]} radius={[0, 4, 4, 0]} maxBarSize={12} />
+                <Bar isAnimationActive={false} key={f} dataKey={f} fill={FUEL_VAR[f]} radius={[0, 4, 4, 0]} maxBarSize={12} />
               ))}
             </BarChart>
           </ResponsiveContainer>
@@ -46,9 +46,10 @@ export default function ForecastPage() {
       </Card>
 
       <Card title="Demand forecast & empirical uncertainty">
+        <p className="mb-2 text-xs text-muted">Engine: {data[series]?.forecast.engine ?? "statistical"} · {data[series]?.forecast.version} {data[series]?.forecast.fallbackReason}</p>
         <select aria-label="Forecast series" value={series} onChange={(e) => setSeries(Number(e.target.value))} className="mb-3 rounded border border-border bg-surface-2 p-2 text-sm">{data.map((r, i) => <option key={r.stationId + r.fuel} value={i}>{r.stationName} · {r.fuel}</option>)}</select>
         {data[series]?.forecast.drift && <Badge tone="warn">Demand drift · human review</Badge>}
-        <div className="h-56"><ResponsiveContainer width="100%" height="100%"><LineChart data={(data[series]?.forecast.perTick ?? data[series]?.forecast.next ?? []).map((value, k) => ({ tick: k + 1, mean: value, lower: data[series]?.forecast.lower?.[k], upper: data[series]?.forecast.upper?.[k] }))}><CartesianGrid strokeDasharray="3 3"/><XAxis dataKey="tick"/><YAxis/><Tooltip/><Legend/><Line dataKey="mean" stroke="#38bdf8" dot={false}/><Line dataKey="lower" stroke="#94a3b8" strokeDasharray="4 4" dot={false}/><Line dataKey="upper" stroke="#94a3b8" strokeDasharray="4 4" dot={false}/></LineChart></ResponsiveContainer></div>
+        <div className="h-56"><ResponsiveContainer width="100%" height="100%"><LineChart data={(data[series]?.forecast.perTick ?? data[series]?.forecast.next ?? []).map((value, k) => ({ tick: k + 1, mean: value, lower: data[series]?.forecast.lower?.[k], upper: data[series]?.forecast.upper?.[k] }))}><CartesianGrid strokeDasharray="3 3"/><XAxis dataKey="tick"/><YAxis/><Tooltip/><Legend/><Line isAnimationActive={false} dataKey="mean" stroke="#38bdf8" dot={false}/><Line isAnimationActive={false} dataKey="lower" stroke="#94a3b8" strokeDasharray="4 4" dot={false}/><Line isAnimationActive={false} dataKey="upper" stroke="#94a3b8" strokeDasharray="4 4" dot={false}/></LineChart></ResponsiveContainer></div>
         <p className="text-xs text-muted">Liters per future tick. Residual-based bounds widen over time and during drift; stockout probabilities are model estimates, not calibrated guarantees.</p>
       </Card>
       <Card title="Risk table (sorted by stockout probability)">

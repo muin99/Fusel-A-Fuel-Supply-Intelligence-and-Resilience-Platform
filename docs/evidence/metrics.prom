@@ -1,118 +1,394 @@
 # HELP http_requests_total HTTP requests served by the API
 # TYPE http_requests_total counter
-http_requests_total{method="GET",route="/api/metrics",status="200"} 23
-http_requests_total{method="GET",route="/api/intelligence/shadow-predictions",status="200"} 1
-http_requests_total{method="GET",route="/api/network",status="200"} 33
-http_requests_total{method="POST",route="/api/auth/login",status="201"} 1
-http_requests_total{method="GET",route="/api/health/live",status="200"} 5
-http_requests_total{method="GET",route="/api/health",status="200"} 4
-http_requests_total{method="GET",route="/api/intelligence/knowledge",status="200"} 1
-http_requests_total{method="GET",route="/api/intelligence/models",status="200"} 1
-http_requests_total{method="POST",route="/api/chaos/simulation",status="201"} 13
+http_requests_total{method="GET",route="/api/metrics",status="200"} 32
+http_requests_total{method="GET",route="/api/forecast/trained-model",status="200"} 3
+http_requests_total{method="POST",route="/api/auth/login",status="201"} 10
+http_requests_total{method="GET",route="/api/decisions/status",status="200"} 47
+http_requests_total{method="POST",route="/api/decisions/autopilot",status="201"} 3
+http_requests_total{method="POST",route="/api/chaos/simulation",status="201"} 7
+http_requests_total{method="GET",route="/api/forecast/risk",status="200"} 13
+http_requests_total{method="GET",route="/api/network",status="200"} 53
+http_requests_total{method="GET",route="/api/requests",status="200"} 7
+http_requests_total{method="POST",route="/api/requests",status="201"} 5
+http_requests_total{method="POST",route="/api/requests/:id/accept",status="201"} 1
+http_requests_total{method="POST",route="/api/chaos/restore",status="201"} 2
+http_requests_total{method="GET",route="/api/health",status="200"} 16
+http_requests_total{method="GET",route="/api/alerts",status="200"} 12
+http_requests_total{method="POST",route="/api/chaos/prediction",status="201"} 5
+http_requests_total{method="POST",route="/api/requests/:id/decline",status="201"} 3
 http_requests_total{method="POST",route="/api/chaos/events",status="201"} 3
-http_requests_total{method="GET",route="/api/forecast/risk",status="200"} 1
-http_requests_total{method="GET",route="/api/recommendations",status="200"} 1
-http_requests_total{method="POST",route="/api/intelligence/evaluate",status="201"} 1
-http_requests_total{method="GET",route="/api/intelligence/replay",status="200"} 1
-http_requests_total{method="POST",route="/api/assistant/ask",status="201"} 1
+http_requests_total{method="GET",route="/api/health/live",status="200"} 8
+http_requests_total{method="GET",route="/api/recommendations",status="200"} 6
+http_requests_total{method="POST",route="/api/recommendations/:id/approve",status="201"} 1
+http_requests_total{method="GET",route="/api/audit",status="200"} 5
+http_requests_total{method="GET",route="/api/forecast/runway",status="200"} 2
+http_requests_total{method="GET",route="/api/auth/config",status="200"} 8
+http_requests_total{method="POST",route="/api/intelligence/counterfactual",status="201"} 3
+http_requests_total{method="GET",route="/api/stream",status="200"} 8
+http_requests_total{method="POST",route="/api/decisions/what-if",status="201"} 1
+http_requests_total{method="GET",route="/api/intelligence/model-quality",status="200"} 2
+http_requests_total{method="GET",route="/api/intelligence/models",status="200"} 1
+http_requests_total{method="GET",route="/api/intelligence/regional-demand",status="200"} 1
+http_requests_total{method="GET",route="/api/intelligence/supply-risk",status="200"} 1
+http_requests_total{method="GET",route="/api/intelligence/transport",status="200"} 1
+http_requests_total{method="GET",route="/api/intelligence/rl",status="200"} 1
 http_requests_total{method="POST",route="/api/intelligence/investigate",status="201"} 1
-http_requests_total{method="POST",route="/api/chaos/prediction",status="201"} 2
-http_requests_total{method="POST",route="/api/chaos/faults",status="201"} 1
-http_requests_total{method="POST",route="/api/chaos/faults/clear",status="201"} 1
+http_requests_total{method="POST",route="/api/chaos/faults",status="201"} 2
+http_requests_total{method="POST",route="/api/chaos/faults/clear",status="201"} 2
 
 # HELP http_request_duration_seconds API request latency
 # TYPE http_request_duration_seconds histogram
-http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/metrics"} 22
-http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_sum{method="GET",route="/api/metrics"} 0.06092439399999999
-http_request_duration_seconds_count{method="GET",route="/api/metrics"} 23
-http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_sum{method="GET",route="/api/intelligence/shadow-predictions"} 0.001369381
-http_request_duration_seconds_count{method="GET",route="/api/intelligence/shadow-predictions"} 1
-http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/network"} 33
-http_request_duration_seconds_sum{method="GET",route="/api/network"} 0.0037465639999999995
-http_request_duration_seconds_count{method="GET",route="/api/network"} 33
-http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/auth/login"} 0
-http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="1",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="5",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_sum{method="POST",route="/api/auth/login"} 0.00733725
-http_request_duration_seconds_count{method="POST",route="/api/auth/login"} 1
-http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/health/live"} 5
-http_request_duration_seconds_sum{method="GET",route="/api/health/live"} 0.000684902
-http_request_duration_seconds_count{method="GET",route="/api/health/live"} 5
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/metrics"} 25
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_sum{method="GET",route="/api/metrics"} 0.12384156499999997
+http_request_duration_seconds_count{method="GET",route="/api/metrics"} 32
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_sum{method="GET",route="/api/forecast/trained-model"} 0.00045565000000000004
+http_request_duration_seconds_count{method="GET",route="/api/forecast/trained-model"} 3
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/auth/login"} 9
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_sum{method="POST",route="/api/auth/login"} 0.010049897999999998
+http_request_duration_seconds_count{method="POST",route="/api/auth/login"} 10
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/decisions/status"} 28
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/decisions/status"} 36
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/decisions/status"} 42
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/decisions/status"} 45
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/decisions/status"} 46
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/decisions/status"} 46
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/decisions/status"} 47
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/decisions/status"} 47
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/decisions/status"} 47
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/decisions/status"} 47
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/decisions/status"} 47
+http_request_duration_seconds_sum{method="GET",route="/api/decisions/status"} 0.6891124409999999
+http_request_duration_seconds_count{method="GET",route="/api/decisions/status"} 47
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/decisions/autopilot"} 1
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/decisions/autopilot"} 2
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_sum{method="POST",route="/api/decisions/autopilot"} 0.020111715999999998
+http_request_duration_seconds_count{method="POST",route="/api/decisions/autopilot"} 3
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/simulation"} 0
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/simulation"} 0
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/simulation"} 1
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/simulation"} 2
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/simulation"} 3
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/simulation"} 4
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/simulation"} 7
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/simulation"} 7
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/simulation"} 7
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/simulation"} 7
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/simulation"} 7
+http_request_duration_seconds_sum{method="POST",route="/api/chaos/simulation"} 1.254347826
+http_request_duration_seconds_count{method="POST",route="/api/chaos/simulation"} 7
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/forecast/risk"} 9
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/forecast/risk"} 9
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/forecast/risk"} 9
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/forecast/risk"} 11
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/forecast/risk"} 12
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/forecast/risk"} 13
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/forecast/risk"} 13
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/forecast/risk"} 13
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/forecast/risk"} 13
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/forecast/risk"} 13
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/forecast/risk"} 13
+http_request_duration_seconds_sum{method="GET",route="/api/forecast/risk"} 0.31086300000000006
+http_request_duration_seconds_count{method="GET",route="/api/forecast/risk"} 13
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/network"} 53
+http_request_duration_seconds_sum{method="GET",route="/api/network"} 0.0085986
+http_request_duration_seconds_count{method="GET",route="/api/network"} 53
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/requests"} 3
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/requests"} 3
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/requests"} 3
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/requests"} 6
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/requests"} 6
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/requests"} 7
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/requests"} 7
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/requests"} 7
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/requests"} 7
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/requests"} 7
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/requests"} 7
+http_request_duration_seconds_sum{method="GET",route="/api/requests"} 0.222092652
+http_request_duration_seconds_count{method="GET",route="/api/requests"} 7
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/requests"} 3
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/requests"} 4
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/requests"} 5
+http_request_duration_seconds_sum{method="POST",route="/api/requests"} 0.018149961
+http_request_duration_seconds_count{method="POST",route="/api/requests"} 5
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/requests/:id/accept"} 0
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/requests/:id/accept"} 0
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/requests/:id/accept"} 0
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/requests/:id/accept"} 0
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/requests/:id/accept"} 0
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/requests/:id/accept"} 0
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/requests/:id/accept"} 1
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/requests/:id/accept"} 1
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/requests/:id/accept"} 1
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/requests/:id/accept"} 1
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/requests/:id/accept"} 1
+http_request_duration_seconds_sum{method="POST",route="/api/requests/:id/accept"} 0.313529463
+http_request_duration_seconds_count{method="POST",route="/api/requests/:id/accept"} 1
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/restore"} 0
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/restore"} 0
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/restore"} 0
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/restore"} 0
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/restore"} 1
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/restore"} 2
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/restore"} 2
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/restore"} 2
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/restore"} 2
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/restore"} 2
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/restore"} 2
+http_request_duration_seconds_sum{method="POST",route="/api/chaos/restore"} 0.22268231700000002
+http_request_duration_seconds_count{method="POST",route="/api/chaos/restore"} 2
 http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/health"} 0
 http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/health"} 0
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/health"} 3
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/health"} 3
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/health"} 3
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/health"} 3
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/health"} 3
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/health"} 3
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/health"} 4
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/health"} 4
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/health"} 4
-http_request_duration_seconds_sum{method="GET",route="/api/health"} 1.1534908450000003
-http_request_duration_seconds_count{method="GET",route="/api/health"} 4
-http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/knowledge"} 1
-http_request_duration_seconds_sum{method="GET",route="/api/intelligence/knowledge"} 0.003530257
-http_request_duration_seconds_count{method="GET",route="/api/intelligence/knowledge"} 1
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/health"} 10
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/health"} 14
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/health"} 16
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/health"} 16
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/health"} 16
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/health"} 16
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/health"} 16
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/health"} 16
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/health"} 16
+http_request_duration_seconds_sum{method="GET",route="/api/health"} 0.409662937
+http_request_duration_seconds_count{method="GET",route="/api/health"} 16
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/alerts"} 10
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/alerts"} 11
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_sum{method="GET",route="/api/alerts"} 0.059604195
+http_request_duration_seconds_count{method="GET",route="/api/alerts"} 12
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_sum{method="POST",route="/api/chaos/prediction"} 0.007792189
+http_request_duration_seconds_count{method="POST",route="/api/chaos/prediction"} 5
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/requests/:id/decline"} 2
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_sum{method="POST",route="/api/requests/:id/decline"} 0.014711751
+http_request_duration_seconds_count{method="POST",route="/api/requests/:id/decline"} 3
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/events"} 1
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/events"} 1
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/events"} 1
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/events"} 1
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/events"} 1
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/events"} 3
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/events"} 3
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/events"} 3
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/events"} 3
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/events"} 3
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/events"} 3
+http_request_duration_seconds_sum{method="POST",route="/api/chaos/events"} 0.25601662599999997
+http_request_duration_seconds_count{method="POST",route="/api/chaos/events"} 3
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_sum{method="GET",route="/api/health/live"} 0.0010323250000000002
+http_request_duration_seconds_count{method="GET",route="/api/health/live"} 8
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_sum{method="GET",route="/api/recommendations"} 0.019070456
+http_request_duration_seconds_count{method="GET",route="/api/recommendations"} 6
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/recommendations/:id/approve"} 0
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/recommendations/:id/approve"} 0
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/recommendations/:id/approve"} 0
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/recommendations/:id/approve"} 0
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/recommendations/:id/approve"} 0
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/recommendations/:id/approve"} 0
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/recommendations/:id/approve"} 1
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/recommendations/:id/approve"} 1
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/recommendations/:id/approve"} 1
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/recommendations/:id/approve"} 1
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/recommendations/:id/approve"} 1
+http_request_duration_seconds_sum{method="POST",route="/api/recommendations/:id/approve"} 0.267488882
+http_request_duration_seconds_count{method="POST",route="/api/recommendations/:id/approve"} 1
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/audit"} 1
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/audit"} 1
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/audit"} 4
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/audit"} 4
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/audit"} 5
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/audit"} 5
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/audit"} 5
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/audit"} 5
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/audit"} 5
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/audit"} 5
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/audit"} 5
+http_request_duration_seconds_sum{method="GET",route="/api/audit"} 0.139617202
+http_request_duration_seconds_count{method="GET",route="/api/audit"} 5
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/forecast/runway"} 1
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/forecast/runway"} 1
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/forecast/runway"} 1
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/forecast/runway"} 1
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/forecast/runway"} 2
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/forecast/runway"} 2
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/forecast/runway"} 2
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/forecast/runway"} 2
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/forecast/runway"} 2
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/forecast/runway"} 2
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/forecast/runway"} 2
+http_request_duration_seconds_sum{method="GET",route="/api/forecast/runway"} 0.052969127
+http_request_duration_seconds_count{method="GET",route="/api/forecast/runway"} 2
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_sum{method="GET",route="/api/auth/config"} 0.0022982930000000003
+http_request_duration_seconds_count{method="GET",route="/api/auth/config"} 8
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/intelligence/counterfactual"} 2
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/intelligence/counterfactual"} 2
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/intelligence/counterfactual"} 2
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/intelligence/counterfactual"} 2
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/intelligence/counterfactual"} 3
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/intelligence/counterfactual"} 3
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/intelligence/counterfactual"} 3
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/intelligence/counterfactual"} 3
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/intelligence/counterfactual"} 3
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/intelligence/counterfactual"} 3
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/intelligence/counterfactual"} 3
+http_request_duration_seconds_sum{method="POST",route="/api/intelligence/counterfactual"} 0.103971643
+http_request_duration_seconds_count{method="POST",route="/api/intelligence/counterfactual"} 3
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/stream"} 0
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/stream"} 1
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/stream"} 1
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/stream"} 1
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/stream"} 1
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/stream"} 6
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/stream"} 8
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/stream"} 8
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/stream"} 8
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/stream"} 8
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/stream"} 8
+http_request_duration_seconds_sum{method="GET",route="/api/stream"} 1.7505709820000002
+http_request_duration_seconds_count{method="GET",route="/api/stream"} 8
+http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_sum{method="POST",route="/api/decisions/what-if"} 0.001343922
+http_request_duration_seconds_count{method="POST",route="/api/decisions/what-if"} 1
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/model-quality"} 0
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/model-quality"} 0
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/model-quality"} 1
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/intelligence/model-quality"} 1
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/intelligence/model-quality"} 1
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/intelligence/model-quality"} 2
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/intelligence/model-quality"} 2
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligence/model-quality"} 2
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/model-quality"} 2
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/model-quality"} 2
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/model-quality"} 2
+http_request_duration_seconds_sum{method="GET",route="/api/intelligence/model-quality"} 0.13587282
+http_request_duration_seconds_count{method="GET",route="/api/intelligence/model-quality"} 2
 http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/models"} 1
 http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/models"} 1
 http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/models"} 1
@@ -124,99 +400,60 @@ http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligenc
 http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/models"} 1
 http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/models"} 1
 http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/models"} 1
-http_request_duration_seconds_sum{method="GET",route="/api/intelligence/models"} 0.000466618
+http_request_duration_seconds_sum{method="GET",route="/api/intelligence/models"} 0.000308656
 http_request_duration_seconds_count{method="GET",route="/api/intelligence/models"} 1
-http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/simulation"} 0
-http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/simulation"} 0
-http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/simulation"} 0
-http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/simulation"} 0
-http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/simulation"} 0
-http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/simulation"} 0
-http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/simulation"} 12
-http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/simulation"} 13
-http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/simulation"} 13
-http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/simulation"} 13
-http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/simulation"} 13
-http_request_duration_seconds_sum{method="POST",route="/api/chaos/simulation"} 5.079441974
-http_request_duration_seconds_count{method="POST",route="/api/chaos/simulation"} 13
-http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/events"} 0
-http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/events"} 0
-http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/events"} 0
-http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/events"} 1
-http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/events"} 2
-http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/events"} 3
-http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/events"} 3
-http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/events"} 3
-http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/events"} 3
-http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/events"} 3
-http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/events"} 3
-http_request_duration_seconds_sum{method="POST",route="/api/chaos/events"} 0.35828513700000003
-http_request_duration_seconds_count{method="POST",route="/api/chaos/events"} 3
-http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_sum{method="GET",route="/api/forecast/risk"} 0.000425742
-http_request_duration_seconds_count{method="GET",route="/api/forecast/risk"} 1
-http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/recommendations"} 0
-http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_sum{method="GET",route="/api/recommendations"} 0.006199291
-http_request_duration_seconds_count{method="GET",route="/api/recommendations"} 1
-http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/intelligence/evaluate"} 0
-http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/intelligence/evaluate"} 0
-http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="1",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="5",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_sum{method="POST",route="/api/intelligence/evaluate"} 0.018744843
-http_request_duration_seconds_count{method="POST",route="/api/intelligence/evaluate"} 1
-http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_sum{method="GET",route="/api/intelligence/replay"} 0.001959127
-http_request_duration_seconds_count{method="GET",route="/api/intelligence/replay"} 1
-http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="1",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="5",method="POST",route="/api/assistant/ask"} 0
-http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/assistant/ask"} 1
-http_request_duration_seconds_sum{method="POST",route="/api/assistant/ask"} 7.208566565
-http_request_duration_seconds_count{method="POST",route="/api/assistant/ask"} 1
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/regional-demand"} 0
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/regional-demand"} 0
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_sum{method="GET",route="/api/intelligence/regional-demand"} 0.023171124
+http_request_duration_seconds_count{method="GET",route="/api/intelligence/regional-demand"} 1
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_sum{method="GET",route="/api/intelligence/supply-risk"} 0.001472846
+http_request_duration_seconds_count{method="GET",route="/api/intelligence/supply-risk"} 1
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_sum{method="GET",route="/api/intelligence/transport"} 0.001540157
+http_request_duration_seconds_count{method="GET",route="/api/intelligence/transport"} 1
+http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="1",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="5",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/intelligence/rl"} 1
+http_request_duration_seconds_sum{method="GET",route="/api/intelligence/rl"} 0.000469382
+http_request_duration_seconds_count{method="GET",route="/api/intelligence/rl"} 1
 http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/intelligence/investigate"} 0
 http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/intelligence/investigate"} 0
 http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/intelligence/investigate"} 0
@@ -228,173 +465,198 @@ http_request_duration_seconds_bucket{le="1",method="POST",route="/api/intelligen
 http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/intelligence/investigate"} 0
 http_request_duration_seconds_bucket{le="5",method="POST",route="/api/intelligence/investigate"} 0
 http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/intelligence/investigate"} 1
-http_request_duration_seconds_sum{method="POST",route="/api/intelligence/investigate"} 13.785636361
+http_request_duration_seconds_sum{method="POST",route="/api/intelligence/investigate"} 6.308882296
 http_request_duration_seconds_count{method="POST",route="/api/intelligence/investigate"} 1
-http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/prediction"} 2
-http_request_duration_seconds_sum{method="POST",route="/api/chaos/prediction"} 0.004778837
-http_request_duration_seconds_count{method="POST",route="/api/chaos/prediction"} 2
 http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/faults"} 0
 http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/faults"} 0
 http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/faults"} 0
-http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/faults"} 1
-http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/faults"} 1
-http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/faults"} 1
-http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/faults"} 1
-http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/faults"} 1
-http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/faults"} 1
-http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/faults"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/faults"} 1
-http_request_duration_seconds_sum{method="POST",route="/api/chaos/faults"} 0.027461196
-http_request_duration_seconds_count{method="POST",route="/api/chaos/faults"} 1
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/faults"} 2
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/faults"} 2
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/faults"} 2
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/faults"} 2
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/faults"} 2
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/faults"} 2
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/faults"} 2
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/faults"} 2
+http_request_duration_seconds_sum{method="POST",route="/api/chaos/faults"} 0.0608988
+http_request_duration_seconds_count{method="POST",route="/api/chaos/faults"} 2
 http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/chaos/faults/clear"} 0
 http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/chaos/faults/clear"} 0
 http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/chaos/faults/clear"} 0
-http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/faults/clear"} 1
-http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/faults/clear"} 1
-http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/faults/clear"} 1
-http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/faults/clear"} 1
-http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/faults/clear"} 1
-http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/faults/clear"} 1
-http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/faults/clear"} 1
-http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/faults/clear"} 1
-http_request_duration_seconds_sum{method="POST",route="/api/chaos/faults/clear"} 0.026062887
-http_request_duration_seconds_count{method="POST",route="/api/chaos/faults/clear"} 1
+http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/chaos/faults/clear"} 2
+http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/chaos/faults/clear"} 2
+http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/chaos/faults/clear"} 2
+http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/chaos/faults/clear"} 2
+http_request_duration_seconds_bucket{le="1",method="POST",route="/api/chaos/faults/clear"} 2
+http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/chaos/faults/clear"} 2
+http_request_duration_seconds_bucket{le="5",method="POST",route="/api/chaos/faults/clear"} 2
+http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/chaos/faults/clear"} 2
+http_request_duration_seconds_sum{method="POST",route="/api/chaos/faults/clear"} 0.057254118
+http_request_duration_seconds_count{method="POST",route="/api/chaos/faults/clear"} 2
 
 # HELP simulator_requests_total Calls to the fuel simulator
 # TYPE simulator_requests_total counter
-simulator_requests_total{endpoint="GET /v1/regions",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/allocations",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/depots",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/stations",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/routes",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/events",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/supply-arrivals",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/instance",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/metrics",outcome="ok"} 29
-simulator_requests_total{endpoint="GET /v1/demand-history",outcome="ok"} 16
+simulator_requests_total{endpoint="GET /v1/instance",outcome="ok"} 34
+simulator_requests_total{endpoint="GET /v1/regions",outcome="ok"} 33
+simulator_requests_total{endpoint="GET /v1/depots",outcome="ok"} 33
+simulator_requests_total{endpoint="GET /v1/stations",outcome="ok"} 33
+simulator_requests_total{endpoint="GET /v1/allocations",outcome="ok"} 33
+simulator_requests_total{endpoint="GET /v1/events",outcome="ok"} 33
+simulator_requests_total{endpoint="GET /v1/routes",outcome="ok"} 33
+simulator_requests_total{endpoint="GET /v1/supply-arrivals",outcome="ok"} 33
+simulator_requests_total{endpoint="GET /v1/metrics",outcome="ok"} 33
+simulator_requests_total{endpoint="GET /v1/demand-history",outcome="ok"} 17
+simulator_requests_total{endpoint="POST /v1/allocations",outcome="ok"} 18
+simulator_requests_total{endpoint="GET /v1/stations",outcome="FAULT_INJECTED"} 2
+simulator_requests_total{endpoint="GET /v1/instance",outcome="FAULT_INJECTED"} 2
+simulator_requests_total{endpoint="GET /v1/regions",outcome="FAULT_INJECTED"} 2
+simulator_requests_total{endpoint="GET /v1/depots",outcome="FAULT_INJECTED"} 2
+simulator_requests_total{endpoint="GET /v1/events",outcome="FAULT_INJECTED"} 2
+simulator_requests_total{endpoint="GET /v1/supply-arrivals",outcome="FAULT_INJECTED"} 2
+simulator_requests_total{endpoint="GET /v1/routes",outcome="FAULT_INJECTED"} 2
+simulator_requests_total{endpoint="GET /v1/allocations",outcome="FAULT_INJECTED"} 2
+simulator_requests_total{endpoint="GET /v1/metrics",outcome="FAULT_INJECTED"} 1
+simulator_requests_total{endpoint="GET /v1/metrics",outcome="circuit_open"} 5
+simulator_requests_total{endpoint="GET /v1/instance",outcome="circuit_open"} 4
+simulator_requests_total{endpoint="GET /v1/regions",outcome="circuit_open"} 4
+simulator_requests_total{endpoint="GET /v1/depots",outcome="circuit_open"} 4
+simulator_requests_total{endpoint="GET /v1/stations",outcome="circuit_open"} 4
+simulator_requests_total{endpoint="GET /v1/routes",outcome="circuit_open"} 4
+simulator_requests_total{endpoint="GET /v1/supply-arrivals",outcome="circuit_open"} 4
+simulator_requests_total{endpoint="GET /v1/events",outcome="circuit_open"} 4
+simulator_requests_total{endpoint="GET /v1/allocations",outcome="circuit_open"} 4
+simulator_requests_total{endpoint="GET /v1/regions",outcome="error"} 1
+simulator_requests_total{endpoint="GET /v1/depots",outcome="error"} 1
+simulator_requests_total{endpoint="GET /v1/stations",outcome="error"} 1
+simulator_requests_total{endpoint="GET /v1/routes",outcome="error"} 1
+simulator_requests_total{endpoint="GET /v1/supply-arrivals",outcome="error"} 1
+simulator_requests_total{endpoint="GET /v1/events",outcome="error"} 1
+simulator_requests_total{endpoint="GET /v1/allocations",outcome="error"} 1
+simulator_requests_total{endpoint="GET /v1/metrics",outcome="error"} 1
 
 # HELP simulator_request_duration_seconds Simulator call latency (including retries)
 # TYPE simulator_request_duration_seconds histogram
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/regions"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/regions"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/regions"} 0
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/regions"} 18
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/regions"} 24
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/regions"} 28
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/regions"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/regions"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/regions"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/regions"} 8.878158124
-simulator_request_duration_seconds_count{endpoint="GET /v1/regions"} 29
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/allocations"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/allocations"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/allocations"} 2
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/allocations"} 19
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/allocations"} 23
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/allocations"} 27
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/allocations"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/allocations"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/allocations"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/allocations"} 9.037191895000001
-simulator_request_duration_seconds_count{endpoint="GET /v1/allocations"} 29
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/depots"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/depots"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/depots"} 0
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/depots"} 16
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/depots"} 22
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/depots"} 28
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/depots"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/depots"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/depots"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/depots"} 9.863080343
-simulator_request_duration_seconds_count{endpoint="GET /v1/depots"} 29
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/stations"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/stations"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/stations"} 0
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/stations"} 15
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/stations"} 19
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/stations"} 28
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/stations"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/stations"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/stations"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/stations"} 11.842999844
-simulator_request_duration_seconds_count{endpoint="GET /v1/stations"} 29
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/routes"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/routes"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/routes"} 0
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/routes"} 15
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/routes"} 19
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/routes"} 27
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/routes"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/routes"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/routes"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/routes"} 11.868638739000005
-simulator_request_duration_seconds_count{endpoint="GET /v1/routes"} 29
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/events"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/events"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/events"} 0
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/events"} 15
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/events"} 18
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/events"} 27
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/events"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/events"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/events"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/events"} 13.005934058000003
-simulator_request_duration_seconds_count{endpoint="GET /v1/events"} 29
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/supply-arrivals"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/supply-arrivals"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/supply-arrivals"} 0
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/supply-arrivals"} 15
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/supply-arrivals"} 18
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/supply-arrivals"} 27
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/supply-arrivals"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/supply-arrivals"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/supply-arrivals"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/supply-arrivals"} 13.409822649000004
-simulator_request_duration_seconds_count{endpoint="GET /v1/supply-arrivals"} 29
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/instance"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/instance"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/instance"} 3
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/instance"} 18
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/instance"} 22
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/instance"} 27
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/instance"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/instance"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/instance"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/instance"} 9.757158854
-simulator_request_duration_seconds_count{endpoint="GET /v1/instance"} 29
-simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/metrics"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/metrics"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/metrics"} 0
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/metrics"} 15
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/metrics"} 18
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/metrics"} 27
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/metrics"} 29
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/metrics"} 29
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/metrics"} 29
-simulator_request_duration_seconds_sum{endpoint="GET /v1/metrics"} 13.549467089000002
-simulator_request_duration_seconds_count{endpoint="GET /v1/metrics"} 29
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/instance"} 4
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/instance"} 7
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/instance"} 22
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/instance"} 27
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/instance"} 35
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/instance"} 40
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/instance"} 40
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/instance"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/instance"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/instance"} 7.456136648999999
+simulator_request_duration_seconds_count{endpoint="GET /v1/instance"} 40
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/regions"} 5
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/regions"} 5
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/regions"} 26
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/regions"} 27
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/regions"} 34
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/regions"} 40
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/regions"} 40
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/regions"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/regions"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/regions"} 7.656148758000001
+simulator_request_duration_seconds_count{endpoint="GET /v1/regions"} 40
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/depots"} 5
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/depots"} 5
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/depots"} 24
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/depots"} 27
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/depots"} 36
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/depots"} 40
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/depots"} 40
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/depots"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/depots"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/depots"} 8.086744823000004
+simulator_request_duration_seconds_count{endpoint="GET /v1/depots"} 40
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/stations"} 5
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/stations"} 5
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/stations"} 19
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/stations"} 27
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/stations"} 34
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/stations"} 40
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/stations"} 40
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/stations"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/stations"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/stations"} 8.769471786
+simulator_request_duration_seconds_count{endpoint="GET /v1/stations"} 40
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/allocations"} 5
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/allocations"} 5
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/allocations"} 5
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/allocations"} 25
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/allocations"} 30
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/allocations"} 36
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/allocations"} 40
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/allocations"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/allocations"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/allocations"} 14.914015704999999
+simulator_request_duration_seconds_count{endpoint="GET /v1/allocations"} 40
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/events"} 5
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/events"} 5
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/events"} 5
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/events"} 26
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/events"} 32
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/events"} 37
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/events"} 40
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/events"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/events"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/events"} 12.792175015
+simulator_request_duration_seconds_count{endpoint="GET /v1/events"} 40
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/routes"} 5
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/routes"} 5
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/routes"} 5
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/routes"} 27
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/routes"} 32
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/routes"} 37
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/routes"} 40
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/routes"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/routes"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/routes"} 12.638521548
+simulator_request_duration_seconds_count{endpoint="GET /v1/routes"} 40
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/supply-arrivals"} 5
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/supply-arrivals"} 5
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/supply-arrivals"} 5
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/supply-arrivals"} 25
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/supply-arrivals"} 31
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/supply-arrivals"} 37
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/supply-arrivals"} 40
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/supply-arrivals"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/supply-arrivals"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/supply-arrivals"} 14.007172946999999
+simulator_request_duration_seconds_count{endpoint="GET /v1/supply-arrivals"} 40
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/metrics"} 5
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/metrics"} 5
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/metrics"} 5
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/metrics"} 22
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/metrics"} 29
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/metrics"} 36
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/metrics"} 38
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/metrics"} 40
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/metrics"} 40
+simulator_request_duration_seconds_sum{endpoint="GET /v1/metrics"} 17.342827305999997
+simulator_request_duration_seconds_count{endpoint="GET /v1/metrics"} 40
 simulator_request_duration_seconds_bucket{le="0.01",endpoint="GET /v1/demand-history"} 0
-simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/demand-history"} 0
-simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/demand-history"} 0
-simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/demand-history"} 1
-simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/demand-history"} 5
-simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/demand-history"} 12
-simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/demand-history"} 16
-simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/demand-history"} 16
-simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/demand-history"} 16
-simulator_request_duration_seconds_sum{endpoint="GET /v1/demand-history"} 11.540040524000002
-simulator_request_duration_seconds_count{endpoint="GET /v1/demand-history"} 16
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="GET /v1/demand-history"} 7
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="GET /v1/demand-history"} 12
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="GET /v1/demand-history"} 14
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="GET /v1/demand-history"} 16
+simulator_request_duration_seconds_bucket{le="1",endpoint="GET /v1/demand-history"} 17
+simulator_request_duration_seconds_bucket{le="2",endpoint="GET /v1/demand-history"} 17
+simulator_request_duration_seconds_bucket{le="5",endpoint="GET /v1/demand-history"} 17
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="GET /v1/demand-history"} 17
+simulator_request_duration_seconds_sum{endpoint="GET /v1/demand-history"} 2.0290073140000002
+simulator_request_duration_seconds_count{endpoint="GET /v1/demand-history"} 17
+simulator_request_duration_seconds_bucket{le="0.01",endpoint="POST /v1/allocations"} 0
+simulator_request_duration_seconds_bucket{le="0.05",endpoint="POST /v1/allocations"} 7
+simulator_request_duration_seconds_bucket{le="0.1",endpoint="POST /v1/allocations"} 13
+simulator_request_duration_seconds_bucket{le="0.25",endpoint="POST /v1/allocations"} 16
+simulator_request_duration_seconds_bucket{le="0.5",endpoint="POST /v1/allocations"} 17
+simulator_request_duration_seconds_bucket{le="1",endpoint="POST /v1/allocations"} 18
+simulator_request_duration_seconds_bucket{le="2",endpoint="POST /v1/allocations"} 18
+simulator_request_duration_seconds_bucket{le="5",endpoint="POST /v1/allocations"} 18
+simulator_request_duration_seconds_bucket{le="+Inf",endpoint="POST /v1/allocations"} 18
+simulator_request_duration_seconds_sum{endpoint="POST /v1/allocations"} 2.6472220660000003
+simulator_request_duration_seconds_count{endpoint="POST /v1/allocations"} 18
 
 # HELP simulator_circuit_state 0=closed, 1=half-open, 2=open
 # TYPE simulator_circuit_state gauge
@@ -402,7 +664,7 @@ simulator_circuit_state 0
 
 # HELP simulator_stale_responses_total Responses flagged X-Simulator-Stale
 # TYPE simulator_stale_responses_total counter
-simulator_stale_responses_total 18
+simulator_stale_responses_total 9
 
 # HELP simulator_invalid_responses_total Responses rejected by schema validation
 # TYPE simulator_invalid_responses_total counter
@@ -413,11 +675,11 @@ simulator_stream_connected 1
 
 # HELP sim_tick Current simulator tick
 # TYPE sim_tick gauge
-sim_tick 2586
+sim_tick 69
 
 # HELP sim_service_level Simulator ground-truth service level (served / demand)
 # TYPE sim_service_level gauge
-sim_service_level 0.032376
+sim_service_level 0.99975
 
 # HELP platform_degraded_mode 1 when serving cached state because the simulator is unreachable
 # TYPE platform_degraded_mode gauge
@@ -425,63 +687,64 @@ platform_degraded_mode 0
 
 # HELP ai_requests_total GPT requests by outcome
 # TYPE ai_requests_total counter
-ai_requests_total{outcome="success"} 3
+ai_requests_total{outcome="success"} 1
 
 # HELP ai_duration_seconds GPT generation latency
 # TYPE ai_duration_seconds histogram
 ai_duration_seconds_bucket{le="1"} 0
 ai_duration_seconds_bucket{le="3"} 0
 ai_duration_seconds_bucket{le="5"} 0
-ai_duration_seconds_bucket{le="10"} 3
-ai_duration_seconds_bucket{le="20"} 3
-ai_duration_seconds_bucket{le="30"} 3
-ai_duration_seconds_bucket{le="+Inf"} 3
-ai_duration_seconds_sum 20.406790848999997
-ai_duration_seconds_count 3
+ai_duration_seconds_bucket{le="10"} 0
+ai_duration_seconds_bucket{le="20"} 0
+ai_duration_seconds_bucket{le="30"} 0
+ai_duration_seconds_bucket{le="+Inf"} 0
+ai_duration_seconds_sum 0
+ai_duration_seconds_count 0
 
 # HELP forecast_abs_error_liters Absolute error of 1-tick-ahead demand forecast
 # TYPE forecast_abs_error_liters histogram
 forecast_abs_error_liters_bucket{le="1",fuel_type="DIESEL"} 0
 forecast_abs_error_liters_bucket{le="5",fuel_type="DIESEL"} 3
-forecast_abs_error_liters_bucket{le="10",fuel_type="DIESEL"} 8
-forecast_abs_error_liters_bucket{le="25",fuel_type="DIESEL"} 17
-forecast_abs_error_liters_bucket{le="50",fuel_type="DIESEL"} 20
-forecast_abs_error_liters_bucket{le="100",fuel_type="DIESEL"} 20
-forecast_abs_error_liters_bucket{le="250",fuel_type="DIESEL"} 20
-forecast_abs_error_liters_bucket{le="500",fuel_type="DIESEL"} 20
-forecast_abs_error_liters_bucket{le="+Inf",fuel_type="DIESEL"} 20
-forecast_abs_error_liters_sum{fuel_type="DIESEL"} 290.39826537032866
-forecast_abs_error_liters_count{fuel_type="DIESEL"} 20
+forecast_abs_error_liters_bucket{le="10",fuel_type="DIESEL"} 4
+forecast_abs_error_liters_bucket{le="25",fuel_type="DIESEL"} 9
+forecast_abs_error_liters_bucket{le="50",fuel_type="DIESEL"} 10
+forecast_abs_error_liters_bucket{le="100",fuel_type="DIESEL"} 11
+forecast_abs_error_liters_bucket{le="250",fuel_type="DIESEL"} 12
+forecast_abs_error_liters_bucket{le="500",fuel_type="DIESEL"} 12
+forecast_abs_error_liters_bucket{le="+Inf",fuel_type="DIESEL"} 12
+forecast_abs_error_liters_sum{fuel_type="DIESEL"} 385.46338983121666
+forecast_abs_error_liters_count{fuel_type="DIESEL"} 12
 forecast_abs_error_liters_bucket{le="1",fuel_type="PETROL"} 1
-forecast_abs_error_liters_bucket{le="5",fuel_type="PETROL"} 5
-forecast_abs_error_liters_bucket{le="10",fuel_type="PETROL"} 12
-forecast_abs_error_liters_bucket{le="25",fuel_type="PETROL"} 18
-forecast_abs_error_liters_bucket{le="50",fuel_type="PETROL"} 20
-forecast_abs_error_liters_bucket{le="100",fuel_type="PETROL"} 20
-forecast_abs_error_liters_bucket{le="250",fuel_type="PETROL"} 20
-forecast_abs_error_liters_bucket{le="500",fuel_type="PETROL"} 20
-forecast_abs_error_liters_bucket{le="+Inf",fuel_type="PETROL"} 20
-forecast_abs_error_liters_sum{fuel_type="PETROL"} 229.03314637024636
-forecast_abs_error_liters_count{fuel_type="PETROL"} 20
+forecast_abs_error_liters_bucket{le="5",fuel_type="PETROL"} 2
+forecast_abs_error_liters_bucket{le="10",fuel_type="PETROL"} 7
+forecast_abs_error_liters_bucket{le="25",fuel_type="PETROL"} 10
+forecast_abs_error_liters_bucket{le="50",fuel_type="PETROL"} 11
+forecast_abs_error_liters_bucket{le="100",fuel_type="PETROL"} 12
+forecast_abs_error_liters_bucket{le="250",fuel_type="PETROL"} 12
+forecast_abs_error_liters_bucket{le="500",fuel_type="PETROL"} 12
+forecast_abs_error_liters_bucket{le="+Inf",fuel_type="PETROL"} 12
+forecast_abs_error_liters_sum{fuel_type="PETROL"} 180.32547791978425
+forecast_abs_error_liters_count{fuel_type="PETROL"} 12
 forecast_abs_error_liters_bucket{le="1",fuel_type="OCTANE"} 1
-forecast_abs_error_liters_bucket{le="5",fuel_type="OCTANE"} 13
-forecast_abs_error_liters_bucket{le="10",fuel_type="OCTANE"} 17
-forecast_abs_error_liters_bucket{le="25",fuel_type="OCTANE"} 20
-forecast_abs_error_liters_bucket{le="50",fuel_type="OCTANE"} 20
-forecast_abs_error_liters_bucket{le="100",fuel_type="OCTANE"} 20
-forecast_abs_error_liters_bucket{le="250",fuel_type="OCTANE"} 20
-forecast_abs_error_liters_bucket{le="500",fuel_type="OCTANE"} 20
-forecast_abs_error_liters_bucket{le="+Inf",fuel_type="OCTANE"} 20
-forecast_abs_error_liters_sum{fuel_type="OCTANE"} 109.16047004228739
-forecast_abs_error_liters_count{fuel_type="OCTANE"} 20
+forecast_abs_error_liters_bucket{le="5",fuel_type="OCTANE"} 4
+forecast_abs_error_liters_bucket{le="10",fuel_type="OCTANE"} 8
+forecast_abs_error_liters_bucket{le="25",fuel_type="OCTANE"} 11
+forecast_abs_error_liters_bucket{le="50",fuel_type="OCTANE"} 12
+forecast_abs_error_liters_bucket{le="100",fuel_type="OCTANE"} 12
+forecast_abs_error_liters_bucket{le="250",fuel_type="OCTANE"} 12
+forecast_abs_error_liters_bucket{le="500",fuel_type="OCTANE"} 12
+forecast_abs_error_liters_bucket{le="+Inf",fuel_type="OCTANE"} 12
+forecast_abs_error_liters_sum{fuel_type="OCTANE"} 121.22410905519641
+forecast_abs_error_liters_count{fuel_type="OCTANE"} 12
 
 # HELP prediction_confidence Mean confidence of the latest forecast batch (0..1)
 # TYPE prediction_confidence gauge
-prediction_confidence 0.7172773237383008
+prediction_confidence 0.6129246860659335
 
 # HELP shortage_alerts_total Shortage alerts raised
 # TYPE shortage_alerts_total counter
-shortage_alerts_total{severity="critical"} 24
+shortage_alerts_total{severity="warning"} 6
+shortage_alerts_total{severity="critical"} 12
 
 # HELP anomalies_detected_total Anomalies detected
 # TYPE anomalies_detected_total counter
@@ -492,44 +755,46 @@ anomalies_detected_total{kind="region"} 2
 
 # HELP decisions_total Allocation recommendations produced / acted on
 # TYPE decisions_total counter
-decisions_total{policy="lp_optimizer",outcome="proposed"} 12
-decisions_total{policy="heuristic_fallback",outcome="proposed"} 3
+decisions_total{policy="lp_optimizer",outcome="proposed"} 23
+decisions_total{policy="lp_optimizer",outcome="auto_submitted"} 15
+decisions_total{policy="lp_optimizer",outcome="submitted"} 2
+decisions_total{policy="heuristic_fallback",outcome="proposed"} 5
 
 # HELP decision_fallback_total Times the decision engine fell back to the safe heuristic
 # TYPE decision_fallback_total counter
-decision_fallback_total{reason="prediction_unavailable"} 1
+decision_fallback_total{reason="prediction_unavailable"} 3
 
 # HELP process_cpu_user_seconds_total Total user CPU time spent in seconds.
 # TYPE process_cpu_user_seconds_total counter
-process_cpu_user_seconds_total 2.863156999999999
+process_cpu_user_seconds_total 4.583667
 
 # HELP process_cpu_system_seconds_total Total system CPU time spent in seconds.
 # TYPE process_cpu_system_seconds_total counter
-process_cpu_system_seconds_total 0.5002510000000001
+process_cpu_system_seconds_total 0.8371079999999999
 
 # HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
 # TYPE process_cpu_seconds_total counter
-process_cpu_seconds_total 3.3634079999999997
+process_cpu_seconds_total 5.420775
 
 # HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
 # TYPE process_start_time_seconds gauge
-process_start_time_seconds 1790664190
+process_start_time_seconds 1790670708
 
 # HELP process_resident_memory_bytes Resident memory size in bytes.
 # TYPE process_resident_memory_bytes gauge
-process_resident_memory_bytes 232820736
+process_resident_memory_bytes 268337152
 
 # HELP process_virtual_memory_bytes Virtual memory size in bytes.
 # TYPE process_virtual_memory_bytes gauge
-process_virtual_memory_bytes 9668448256
+process_virtual_memory_bytes 9677844480
 
 # HELP process_heap_bytes Process heap size in bytes.
 # TYPE process_heap_bytes gauge
-process_heap_bytes 562552832
+process_heap_bytes 571949056
 
 # HELP process_open_fds Number of open file descriptors.
 # TYPE process_open_fds gauge
-process_open_fds 46
+process_open_fds 36
 
 # HELP process_max_fds Maximum number of open file descriptors.
 # TYPE process_max_fds gauge
@@ -537,56 +802,56 @@ process_max_fds 524288
 
 # HELP nodejs_eventloop_lag_seconds Lag of event loop in seconds.
 # TYPE nodejs_eventloop_lag_seconds gauge
-nodejs_eventloop_lag_seconds 0.00217346
+nodejs_eventloop_lag_seconds 0.002765325
 
 # HELP nodejs_eventloop_lag_min_seconds The minimum recorded event loop delay.
 # TYPE nodejs_eventloop_lag_min_seconds gauge
-nodejs_eventloop_lag_min_seconds 0.009314304
+nodejs_eventloop_lag_min_seconds 0.009363456
 
 # HELP nodejs_eventloop_lag_max_seconds The maximum recorded event loop delay.
 # TYPE nodejs_eventloop_lag_max_seconds gauge
-nodejs_eventloop_lag_max_seconds 0.012967935
+nodejs_eventloop_lag_max_seconds 0.013156351
 
 # HELP nodejs_eventloop_lag_mean_seconds The mean of the recorded event loop delays.
 # TYPE nodejs_eventloop_lag_mean_seconds gauge
-nodejs_eventloop_lag_mean_seconds 0.011479766709677418
+nodejs_eventloop_lag_mean_seconds 0.011630073173333333
 
 # HELP nodejs_eventloop_lag_stddev_seconds The standard deviation of the recorded event loop delays.
 # TYPE nodejs_eventloop_lag_stddev_seconds gauge
-nodejs_eventloop_lag_stddev_seconds 0.001083955593335107
+nodejs_eventloop_lag_stddev_seconds 0.0011076906382384373
 
 # HELP nodejs_eventloop_lag_p50_seconds The 50th percentile of the recorded event loop delays.
 # TYPE nodejs_eventloop_lag_p50_seconds gauge
-nodejs_eventloop_lag_p50_seconds 0.011141119
+nodejs_eventloop_lag_p50_seconds 0.011583487
 
 # HELP nodejs_eventloop_lag_p90_seconds The 90th percentile of the recorded event loop delays.
 # TYPE nodejs_eventloop_lag_p90_seconds gauge
-nodejs_eventloop_lag_p90_seconds 0.012795903
+nodejs_eventloop_lag_p90_seconds 0.012804095
 
 # HELP nodejs_eventloop_lag_p99_seconds The 99th percentile of the recorded event loop delays.
 # TYPE nodejs_eventloop_lag_p99_seconds gauge
-nodejs_eventloop_lag_p99_seconds 0.012820479
+nodejs_eventloop_lag_p99_seconds 0.012877823
 
 # HELP nodejs_active_resources Number of active resources that are currently keeping the event loop alive, grouped by async resource type.
 # TYPE nodejs_active_resources gauge
 nodejs_active_resources{type="PipeWrap"} 2
-nodejs_active_resources{type="TCPSocketWrap"} 18
+nodejs_active_resources{type="TCPSocketWrap"} 16
 nodejs_active_resources{type="TCPServerWrap"} 1
-nodejs_active_resources{type="Timeout"} 16
+nodejs_active_resources{type="Timeout"} 13
 nodejs_active_resources{type="Immediate"} 1
 
 # HELP nodejs_active_resources_total Total number of active resources.
 # TYPE nodejs_active_resources_total gauge
-nodejs_active_resources_total 38
+nodejs_active_resources_total 33
 
 # HELP nodejs_active_handles Number of active libuv handles grouped by handle type. Every handle type is C++ class name.
 # TYPE nodejs_active_handles gauge
-nodejs_active_handles{type="Socket"} 20
+nodejs_active_handles{type="Socket"} 18
 nodejs_active_handles{type="Server"} 1
 
 # HELP nodejs_active_handles_total Total number of active handles.
 # TYPE nodejs_active_handles_total gauge
-nodejs_active_handles_total 21
+nodejs_active_handles_total 19
 
 # HELP nodejs_active_requests Number of active libuv requests grouped by request type. Every request type is C++ class name.
 # TYPE nodejs_active_requests gauge
@@ -597,24 +862,24 @@ nodejs_active_requests_total 0
 
 # HELP nodejs_heap_size_total_bytes Process heap size from Node.js in bytes.
 # TYPE nodejs_heap_size_total_bytes gauge
-nodejs_heap_size_total_bytes 196030464
+nodejs_heap_size_total_bytes 207302656
 
 # HELP nodejs_heap_size_used_bytes Process heap size used from Node.js in bytes.
 # TYPE nodejs_heap_size_used_bytes gauge
-nodejs_heap_size_used_bytes 92779352
+nodejs_heap_size_used_bytes 80343896
 
 # HELP nodejs_external_memory_bytes Node.js external memory size in bytes.
 # TYPE nodejs_external_memory_bytes gauge
-nodejs_external_memory_bytes 5930836
+nodejs_external_memory_bytes 5556854
 
 # HELP nodejs_heap_space_size_total_bytes Process heap space size total from Node.js in bytes.
 # TYPE nodejs_heap_space_size_total_bytes gauge
 nodejs_heap_space_size_total_bytes{space="read_only"} 0
 nodejs_heap_space_size_total_bytes{space="new"} 134217728
-nodejs_heap_space_size_total_bytes{space="old"} 45748224
-nodejs_heap_space_size_total_bytes{space="code"} 6029312
+nodejs_heap_space_size_total_bytes{space="old"} 54661120
+nodejs_heap_space_size_total_bytes{space="code"} 7340032
 nodejs_heap_space_size_total_bytes{space="shared"} 0
-nodejs_heap_space_size_total_bytes{space="trusted"} 6995968
+nodejs_heap_space_size_total_bytes{space="trusted"} 8044544
 nodejs_heap_space_size_total_bytes{space="shared_trusted"} 0
 nodejs_heap_space_size_total_bytes{space="new_large_object"} 0
 nodejs_heap_space_size_total_bytes{space="large_object"} 2850816
@@ -626,11 +891,11 @@ nodejs_heap_space_size_total_bytes{space="trusted_large_object"} 0
 # HELP nodejs_heap_space_size_used_bytes Process heap space size used from Node.js in bytes.
 # TYPE nodejs_heap_space_size_used_bytes gauge
 nodejs_heap_space_size_used_bytes{space="read_only"} 0
-nodejs_heap_space_size_used_bytes{space="new"} 40081520
-nodejs_heap_space_size_used_bytes{space="old"} 37948824
-nodejs_heap_space_size_used_bytes{space="code"} 5452512
+nodejs_heap_space_size_used_bytes{space="new"} 12352248
+nodejs_heap_space_size_used_bytes{space="old"} 51645024
+nodejs_heap_space_size_used_bytes{space="code"} 6354880
 nodejs_heap_space_size_used_bytes{space="shared"} 0
-nodejs_heap_space_size_used_bytes{space="trusted"} 6283376
+nodejs_heap_space_size_used_bytes{space="trusted"} 6978624
 nodejs_heap_space_size_used_bytes{space="shared_trusted"} 0
 nodejs_heap_space_size_used_bytes{space="new_large_object"} 0
 nodejs_heap_space_size_used_bytes{space="large_object"} 2832464
@@ -642,11 +907,11 @@ nodejs_heap_space_size_used_bytes{space="trusted_large_object"} 0
 # HELP nodejs_heap_space_size_available_bytes Process heap space size available from Node.js in bytes.
 # TYPE nodejs_heap_space_size_available_bytes gauge
 nodejs_heap_space_size_available_bytes{space="read_only"} 0
-nodejs_heap_space_size_available_bytes{space="new"} 27023248
-nodejs_heap_space_size_available_bytes{space="old"} 7749832
-nodejs_heap_space_size_available_bytes{space="code"} 576064
+nodejs_heap_space_size_available_bytes{space="new"} 54752520
+nodejs_heap_space_size_available_bytes{space="old"} 2924248
+nodejs_heap_space_size_available_bytes{space="code"} 984256
 nodejs_heap_space_size_available_bytes{space="shared"} 0
-nodejs_heap_space_size_available_bytes{space="trusted"} 75616
+nodejs_heap_space_size_available_bytes{space="trusted"} 1064200
 nodejs_heap_space_size_available_bytes{space="shared_trusted"} 0
 nodejs_heap_space_size_available_bytes{space="new_large_object"} 67108864
 nodejs_heap_space_size_available_bytes{space="large_object"} 0
@@ -661,30 +926,30 @@ nodejs_version_info{version="v24.21.0",major="24",minor="21",patch="0"} 1
 
 # HELP nodejs_gc_duration_seconds Garbage collection duration by kind, one of major, minor, incremental or weakcb.
 # TYPE nodejs_gc_duration_seconds histogram
-nodejs_gc_duration_seconds_bucket{le="0.001",kind="minor"} 0
-nodejs_gc_duration_seconds_bucket{le="0.01",kind="minor"} 8
-nodejs_gc_duration_seconds_bucket{le="0.1",kind="minor"} 8
-nodejs_gc_duration_seconds_bucket{le="1",kind="minor"} 8
-nodejs_gc_duration_seconds_bucket{le="2",kind="minor"} 8
-nodejs_gc_duration_seconds_bucket{le="5",kind="minor"} 8
-nodejs_gc_duration_seconds_bucket{le="+Inf",kind="minor"} 8
-nodejs_gc_duration_seconds_sum{kind="minor"} 0.03806092200055718
-nodejs_gc_duration_seconds_count{kind="minor"} 8
+nodejs_gc_duration_seconds_bucket{le="0.001",kind="incremental"} 2
+nodejs_gc_duration_seconds_bucket{le="0.01",kind="incremental"} 3
+nodejs_gc_duration_seconds_bucket{le="0.1",kind="incremental"} 3
+nodejs_gc_duration_seconds_bucket{le="1",kind="incremental"} 3
+nodejs_gc_duration_seconds_bucket{le="2",kind="incremental"} 3
+nodejs_gc_duration_seconds_bucket{le="5",kind="incremental"} 3
+nodejs_gc_duration_seconds_bucket{le="+Inf",kind="incremental"} 3
+nodejs_gc_duration_seconds_sum{kind="incremental"} 0.00431513499841094
+nodejs_gc_duration_seconds_count{kind="incremental"} 3
 nodejs_gc_duration_seconds_bucket{le="0.001",kind="major"} 0
-nodejs_gc_duration_seconds_bucket{le="0.01",kind="major"} 3
+nodejs_gc_duration_seconds_bucket{le="0.01",kind="major"} 2
 nodejs_gc_duration_seconds_bucket{le="0.1",kind="major"} 3
 nodejs_gc_duration_seconds_bucket{le="1",kind="major"} 3
 nodejs_gc_duration_seconds_bucket{le="2",kind="major"} 3
 nodejs_gc_duration_seconds_bucket{le="5",kind="major"} 3
 nodejs_gc_duration_seconds_bucket{le="+Inf",kind="major"} 3
-nodejs_gc_duration_seconds_sum{kind="major"} 0.018083760000765323
+nodejs_gc_duration_seconds_sum{kind="major"} 0.024592770997434857
 nodejs_gc_duration_seconds_count{kind="major"} 3
-nodejs_gc_duration_seconds_bucket{le="0.001",kind="incremental"} 1
-nodejs_gc_duration_seconds_bucket{le="0.01",kind="incremental"} 2
-nodejs_gc_duration_seconds_bucket{le="0.1",kind="incremental"} 2
-nodejs_gc_duration_seconds_bucket{le="1",kind="incremental"} 2
-nodejs_gc_duration_seconds_bucket{le="2",kind="incremental"} 2
-nodejs_gc_duration_seconds_bucket{le="5",kind="incremental"} 2
-nodejs_gc_duration_seconds_bucket{le="+Inf",kind="incremental"} 2
-nodejs_gc_duration_seconds_sum{kind="incremental"} 0.0021512769982218742
-nodejs_gc_duration_seconds_count{kind="incremental"} 2
+nodejs_gc_duration_seconds_bucket{le="0.001",kind="minor"} 0
+nodejs_gc_duration_seconds_bucket{le="0.01",kind="minor"} 4
+nodejs_gc_duration_seconds_bucket{le="0.1",kind="minor"} 6
+nodejs_gc_duration_seconds_bucket{le="1",kind="minor"} 6
+nodejs_gc_duration_seconds_bucket{le="2",kind="minor"} 6
+nodejs_gc_duration_seconds_bucket{le="5",kind="minor"} 6
+nodejs_gc_duration_seconds_bucket{le="+Inf",kind="minor"} 6
+nodejs_gc_duration_seconds_sum{kind="minor"} 0.05479737600311636
+nodejs_gc_duration_seconds_count{kind="minor"} 6
