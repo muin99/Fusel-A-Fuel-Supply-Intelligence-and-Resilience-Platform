@@ -1,0 +1,39 @@
+{
+  "version": "tabular-q-1.0.0",
+  "environment": "Approximate single-station inventory surrogate; not official simulator",
+  "trainingEpisodes": 2500,
+  "testEpisodes": 100,
+  "trainSeeds": [
+    0,
+    2499
+  ],
+  "testSeeds": [
+    10000,
+    10099
+  ],
+  "state": "inventory bin, pipeline inventory bin, previous-demand bin",
+  "actionsLiters": [
+    0,
+    2000,
+    4000,
+    6000
+  ],
+  "reward": "-10*unmet -0.005*inventory -0.015*shipment -20 per dispatch",
+  "results": {
+    "q_learning": {
+      "unmetLiters": 0.0,
+      "demandLiters": 32017.92566758025,
+      "shippedLiters": 31009.116298424822,
+      "reward": -2351.9109213740476,
+      "serviceLevel": 1.0
+    },
+    "reorder_point": {
+      "unmetLiters": 0.0,
+      "demandLiters": 32017.92566758025,
+      "shippedLiters": 31880.0,
+      "reward": -2629.331669293553,
+      "serviceLevel": 1.0
+    }
+  },
+  "promotion": "research only; never dispatches. Official-simulator validation required before adoption."
+}

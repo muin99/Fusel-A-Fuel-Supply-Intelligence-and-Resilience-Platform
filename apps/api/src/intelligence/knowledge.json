@@ -1,0 +1,374 @@
+[
+  {
+    "id": "problem-statement:1-22",
+    "source": "problem-statement",
+    "line": 1,
+    "text": "                                       .\\ BUP COMPUTER PROGRAMMING CLUB\n\n\n                                     BuP  G\n                                      : r::n:\n                                            =\n                                     =                              N\n                                     > Hackathon>\n                                             In association with\n                                                                           \u00b0\n                                       Pieridhi.io\n                                            0\u2019  o\n\n                                     HACKATHON FINALS\n\n                 Fuel Supply Intelligence &\n                    Resilience Platform\n                                 Build. Deploy. Observe. Respond.\n\n\nTHE CHALLENGE\nBuild znd operate an intelligent decision-support platform for a simulated fuel supply network in Bangladesh. Your"
+  },
+  {
+    "id": "problem-statement:23-44",
+    "source": "problem-statement",
+    "line": 23,
+    "text": "system should help an operations team understand fuel availability, identify emerging shortages, respond to\ndisruptions, recommend allocation decisions, and remain usable when parts of the system fail.\n\n\n\n\n                             This is not only a machine-learning challenge.\n\n     Application Development                 Al [ Decision Intelligence                DevOps & Reliahility\n\n\n     Build the cperator experience             Predict, detect, optimize               Ship, observe, recover\n\nEpea\n ~[l=\u00a9\nEESTINS                                                                BUP CSE FEST 2026 | HACKATHON FINALS\n\n\nChallenge at a Glance\n Core goal                                                Build a working fuel operations decision-support platform\n                                                          on top of the organizer-provided simulator.\n"
+  },
+  {
+    "id": "problem-statement:45-66",
+    "source": "problem-statement",
+    "line": 45,
+    "text": "\n Must include                                             Operator-facing application, backend, intelligence\n                                                          component, deployment, observability, resilience, and load\n                                                          testing.\n\n\n Intelligence                                             At Ieaslone meamngful AI IML/ optvm\\zahon /detectlcn\n                                                          capability. Reinforcement learningis optional.\n\n\n Environment                                              All teams integrate wnh the sameEUP Fuel Supply\n                                                          Simulator.\n\n\n Hackathon dynamic                                        Orgamzers may m(roduce surprise domain and engineering\n                                                          events during development or judging.\n\n\n Deployment                                               The system must be reproduclbly runnable, preferably\n                                                          containerized.\n\n"
+  },
+  {
+    "id": "problem-statement:67-88",
+    "source": "problem-statement",
+    "line": 67,
+    "text": " Judging focus                                            Wcrklnq product, decision usefulness, architecture,\n                                                           DevOps, resilience, observability, and live demonstration.\n\n\n\n1. Executive Summary\nBangladesh's simulated fuel supply network consists of interconnected supply paints, depots, transportation\nroutes, regions, fuel stations, and customer demand. A disruption at one stage can affect the rest of the\nnetwork. A delayed shipment may reduce depot inventory. A demand spike can create regional shortages. A\nroute failure can make an otherwise valid allocation impossible.\nYour challenge is to build an intelligent Fuel Supply Operations Platform capable of:\n e observing the current simulated fuel network;\n \u00ab identifying emerging shortages and operational risks;\n \u00a9 helping operators decide how constrained fuel should be allocated;\n \u00a9 responding to unexpected disruptions;\n  # exposing the reasoning behind important recommendations;\n e remaining observable and usable during application or service failures;\n \u00ae demonstrating measurable system performance under load.\nThe platform must operate entirely against the BUP Fuel Supply Simulator provided by the organizers. No real\nfuel infrastructure will be accessed or controlled.\n\n"
+  },
+  {
+    "id": "problem-statement:89-110",
+    "source": "problem-statement",
+    "line": 89,
+    "text": "\n\n                                                       Page 2\n\n                                                                     UL CAR FEAT J000 | HACKATHON FINALS\n\n\n\n\n2. Primary Engineering Challenge\n PRIMARY ENGINEERING QUESTION\n Can your 1eam build. deploy. and operate an intelligent system that helps a fuel operations center respond to\n changing demand. constramned supply, operational disruptions, and software failures?\n\n\nYour solution should demonstrate the complete engineering loop:\n\n Observe    \u00bb Detect   \u00bb Predict \u2014 Decide \u2014 Simulate \u2014 Act \u2014 Monitor \u2014 Recover\n\n\nThe emphasis is not on achieving the highest ML accuracy alone. Judges should be able to interact with and\nobserve a working system."
+  },
+  {
+    "id": "problem-statement:111-132",
+    "source": "problem-statement",
+    "line": 111,
+    "text": "\n\n3. Scenario\nThe system represents a simulated fuel supply chain:\n\n Import / Supply\n Pur(\u2018 / Arrival\n\n De;at / Storage\n\n stt\u2018rlhutlon / Transport\n\n Fue: Stations\n     1\n Customer Demand\n\n\nThe primary fuel categories are Diesel, Petrol, and Octane. Teams may model additional operational concepts\nwhen useful.\n\n4. Organizer-Provided Fuel Supply Simulator\nAll teams will receive access to the same BUP Fuel Supply Simulator. The simulator acts as the simulated"
+  },
+  {
+    "id": "problem-statement:133-154",
+    "source": "problem-statement",
+    "line": 133,
+    "text": "operational environment for the hackathon.\nIt will provide information such as:\n  & depots and stations;\n   inventory by fuel type;\n  \u00ae regional demand;\n  \u00ab incoming supply;\n   transport routes and travel constraints;\n  \u00bb supply delays;\n   operational events and crisis conditions.\nTeams will interact with the simulator through documented APIs. Example conceptual endpoints may include:\n\n\n\n\n                                                         Page 3\n\nEuearErs]\n_CSE|pmg\n[FlesT! B                                                            BUP CSE FEST 2026 | HACKATHON FINALS\n\n GET /stations\n GET /depots"
+  },
+  {
+    "id": "problem-statement:155-176",
+    "source": "problem-statement",
+    "line": 155,
+    "text": " GET /supply-arrivals\n GET /demand-history                                                                                                  g\n GET /routes\n GET /events\n\n POST /allocations\n\n\n\n IMPORTANT\n Teams are ol required to build their own fuel-supply simulalor. The organizers provide the operational warld. Your\n job Is to build the intelligent system that operates on top of it.\n\n\n\n5. What Your Team Must Build\n\nEach team mus! build a complete end-to-end platform for fuel supply inle_l\ufb01gence \u2018and resilience. The system should\nhandle data callection and management, perform analysis, support decision-making, provide applications and\noperalor tools, and include monitoring capabilities.\n\n6. Application Requirement"
+  },
+  {
+    "id": "problem-statement:177-198",
+    "source": "problem-statement",
+    "line": 177,
+    "text": "Every team must build a usable operator-facing application. A notebook alane is ot considered 2 complete\nsubmission.\n\u201cThe application should allow an operator to understand the current state of the fuel network and interact with the\nteam's decision-support system. The application should include a mezningful subset of:\n  e current fuel inventory;\n  e depot and station status;                                                                                             |\n \u00bb regional fuel demand;                                                                                                  |\n @ shortage alerts;\n  projected shortage risk;\n \u00a9 Incoming supply;\n o disruptions;\n - recommended allocations;\n e expected impac! of decisions;\n \u00ae system alerts;\n = decision history;\n o service health.\nTeams are free to design the experience. A web application is recommended, but ather interfaces may be\naccepted if they meaningfully support the operalions warkflow.\n\n7. Intelligence Requirement\nEvery team must implement at least one mezningful intelligent capability. Teams may chaose the techniques\nthat best fit their architecture."
+  },
+  {
+    "id": "problem-statement:199-220",
+    "source": "problem-statement",
+    "line": 199,
+    "text": "\nPrediction\n o demand forecasting\n o shortage prediction\n \u00a9 stockout probabifity\n \u00a9 estimated supply arrival\n e transport delay predicion\n                                                        Page4\n\n\"\nCST\n  \\}                                                                         BUP CSE FEST 2026 | HACKATHON FINALS\nDetection\n \u00a9 anomalous demand\n \u00a9 abnormal inventory changes\n \u00a9 supply-chain bottlenecks\n * emerging regional disruptions\n\nDecision Intelligence\n    \u00ae constrained optimization\n    o heuristic allocation\n    \u00ae priority-based allocation                             '"
+  },
+  {
+    "id": "problem-statement:221-242",
+    "source": "problem-statement",
+    "line": 221,
+    "text": "    o reinforcement learning\n    * mathematical optimization\n    \u00ab hybrid policies\n\nGenerative Al\n     incident explanation\n    \u00ae supply-chain state summarization\n e operator investigation assistance\n \u00ab human-readable decision explanations\nLLMs should support the operational system rather than merely provide a chatbot around the application.\n\n8. Reinforcement Learning\n\n    OPTIONAL\n    Reinforcement learning is optional. Teams that believe RL is appropriate may use it for allocation or sequential\n    decision-making.\n\nA posslble RL formulation could include:\n\n    State\n     inventory, demand, predicted shortage, available supply, route availability\n"
+  },
+  {
+    "id": "problem-statement:243-264",
+    "source": "problem-statement",
+    "line": 243,
+    "text": "    Action\n     allocate quantity, select destination, select route, delay allocation\n\n    Reward\n     reduce unmet demand, reduce transport cost, reduce stockouts, maintain service level\n\n\nIf RLis used, teams should demonstrate why it provides useful behavior compared with a reasonable rule-\nbased or heuristic approach.\n\n\n\n\n                                                            Page 5\n\n[MESTIM                                                                            BUP CSE FEST 2026 | HACKATHON FINALS\n9. Decision Support\nImportant recommendations should be inspectable. For example:\n\n ALERT\n\n Station: DHAKA-021"
+  },
+  {
+    "id": "problem-statement:265-286",
+    "source": "problem-statement",
+    "line": 265,
+    "text": " Fuel: Diesel\n\n Projected Stockout: 6.2 hours\n Current Inventory:      8,400 L\n Expected Demand:         11,900 L\n\n Recommended Allocation:\n 5,000 L from DEPOT-03\n\n Expected Result:\n Stockout risk reduced 72% \u2014 19%\n\n\nWhere appropriate, teams should show why an area is considered at risk; which signals influenced the\nrecommendation, relevant constraints, expected impact, confidence or uncertainty, and alternative actions.\nHuman operators should remain able to inspect important decisions.\n\n10. Crisis and Event Handling\nDuring the hackathon, organizers may introduce changes to the'simulated environment. Examples include:\n\n Scenario                                     Example Condition                            What Your System Should Show\n"
+  },
+  {
+    "id": "problem-statement:287-308",
+    "source": "problem-statement",
+    "line": 287,
+    "text": "\n Shipment delay                               Incoming fuel arrives later than             Warning, shortage impact, decision\n                                              expected.                                    response, recovery.\n Demand spike                                 One or more regions experience               Risk change, forecast/detection\n                                              elevated demand.                             response, allocation adaptation.\n\n Depot constraint                             Available inventory or capacity is           Constraint handling, reallocation, service\n                                              reduced.                                     impact.\n\n Regional disruption                          A route or region becomes temporarily        Altemative allocation and recovery\n                                              unavailable.                                 behavior.\n\n Combined crisis                              Two or more disruptions occur together.       End-to-end resilience and failure\n                                                                                           boundaries.\n\nTeams should demonstrate\n                    how  their ysiem detects, evaluates, responds, explains, and monitors recovery.\n\n11. Application Resilience .\nTeams must define what happens when something goes wrong.\n\n ML model unavailable         \u2014 Fallback allocation policy"
+  },
+  {
+    "id": "problem-statement:309-330",
+    "source": "problem-statement",
+    "line": 309,
+    "text": " Invalid simulator response     \u2014 Reject input + raise alert\n Prediction confidence too Jow \u2014 Human review requested\n Backend dependency unavailable \u2014 Retry / cached state / degraded mode\n\n\n\n\n                                                                Page 6\n\n                                                                        BUP CSE FEST 2026 | HAGKATHON FINALS\nTeams are encouraged to implement appropriate mechanisms such as fallback logic, graceful degradation,\nretries, timeout handling, health checks, cached state, validation, circuit breakers, and rollback. Sophisticated\nfault-tolerance infrastructure is not mandatory; clear and demonstrable behavior is more important.\n\n12. DevOps Requirement\nEvery system must be deployable. At minimum, teams should provide a reproducible way to launch the\napplication, for example:\n\n docker compose up\n\n\nor an equivalent documented deployment process."
+  },
+  {
+    "id": "problem-statement:331-352",
+    "source": "problem-statement",
+    "line": 331,
+    "text": "Teams should demonstrate a basic software delivery workflow:\n\n Source Code \u2014 Build \u2014 Test \u2014 Package \u2014 Deploy \u2014 Health Check \u2014 Running Application\n\nA CI/CD workflow is strongly encouraged. Examples include GitHub Actions, GitLab Cl, Jenkins, or equivalent\nautomation.\n\n13. Advanced DevOps Opportunities\nTeams seeking additional technical depth may implement:\n \u00ae Kubemetes;\n \u00ae Helm;\n e Infrastructure as Code;\n \u00a9 Terraform;\n \u00a9 GitOps;\n \u00a9 automated rollback;\n \u00a9 blue/green deployment;\n \u00ae canary deployment;\n \u00bb autoscaling;\n o distributed services;\n o service discovery;\n \u00ae queue-based processing.\nThese are optional. Do not introduce infrastructure complexity unless it improves your solution."
+  },
+  {
+    "id": "problem-statement:353-374",
+    "source": "problem-statement",
+    "line": 353,
+    "text": "\n14. Observability Requirement\nYour team must be able to understand what the system is doing. Teams must implement meaningful\nobservability covering the application.\n\n Layer                                                     Examples\n\n\n Application                                               request rate, latency, error rate, service availability\n System                                                    CPU, memory, resource utilization\n\n Intelligence                                              prediction error, madel confidence, shortage-alert rate,\n                                                           decision frequency, fallback activation\n\n Logs                                                      impartant actions, integration failures, decision events,\n                                                           recoveries\n\n\n\n                                                      Page 7\n\n                                                                                                                     S,"
+  },
+  {
+    "id": "problem-statement:375-396",
+    "source": "problem-statement",
+    "line": 375,
+    "text": "Eues\n\u2014CSE\nEesT.                                                                  BUP CSE FEST 2026 | HACKATHON FINALS\n\n\nJaeger, or equivalent tools. Teams are free to choose their stack.\n\n15. Health and Status\nThe application should expose the health of important compaonents where meaningful. Example:\n\n SYSTEM STATUS\n\n Backend API            Healthy\n Database              Healthy\n Fuel Simulator         Healthy\n Prediction Service      Healthy\n Decision Engine        Healthy\n p95 Latency            164 ms\n Error Rate            0.4%\n\n\nJudges should be able to understand whether the system itself is healthy."
+  },
+  {
+    "id": "problem-statement:397-418",
+    "source": "problem-statement",
+    "line": 397,
+    "text": "\n16. Data\nThe primary operational data will come from the organizer-provided simulation environment.\nTeams may additionally use public datasets, synthetic data, derived features, generated historical data, or\nadditional contextual information. Any external or generated data should be documented.\n\n  FOCUS YOUR TIME ON BUILDING\n  Teams are not required to create an entire fuel dataset from scratch. The shared simulator is intended to let\n  participants spend hackathon time building and operating solutions rather than manufacturing separate underlying\n  worlds.\n\n\n 17. Load Testing\nEach team must load-test at least one meaningful application path, such as the prediction API, decision API,\nsimulator integration, dashboard backend, or an end-to-end decision request.\nTeams should report relevant measurements such as:\n  \u00bb average latency;\n  \u00bb p50 latency;\n  \u00bb p95 latency;\n  * p9g latency where available;\n  \u00bb throughput;\n   error rate;"
+  },
+  {
+    "id": "problem-statement:419-440",
+    "source": "problem-statement",
+    "line": 419,
+    "text": "   concurrency;\n  e resource usage.\nThe emphasis should be on understanding the behavior and limits of the implemented system rather than\nachieving an arbitrary benchmark.\n\n18. Security and Engineering Hygiene\nTeams should demonstrate basic software engineering hygiene. At minimum:\n  \u00a9 do not hard-code secrets;\n  o validate external input;\n  \u00a9 handle failed requests appropriately;\n                                                         Page 8\n\n                                                                          BUP CSE FEST 2026 | HACKATHON FINALS\ne document required configuration;                           % afe\n  e avoid exposing credentials;\n  o restrict sensitive operator actions where appropriate.\nTeams are not expected to build enterprise-grade security within the hackathon duration.\n\n19. Required Deliverables\n1. Working Application: A runnable end-to-end platform.\n2. Source Repository: Application code, setup instructions, dependencies, and deployment instructions.\n3. Simulator Integration: The system must interact with the official BUP Fuel Supply Simulator."
+  },
+  {
+    "id": "problem-statement:441-462",
+    "source": "problem-statement",
+    "line": 441,
+    "text": "4. Intelligence Component: At least one meaningful Al, ML, optimization, detection, or decision-support capability.\n5. Operator Interface: A usable interface showing meaningful operational information.\n6. Architecture Diagram: A clear view of simulator \u2014 data/backend \u2014 intelligence \u2014 decision \u2014 application \u2014\nmonitoring.\n7. Deployment: A reproducible deployment method.\n8. Observability Evidence: Logs, metrics, dashboards, alerts, or equivalent outputs.\n9. Resilience Demonstration: Evidence showing how the application responds to at least one meaningful failure\ncondition.\n10. Load-Test Evidence: Workload definition and measured results.\n11. Final Demo: A live or judge-supervised demonstration of the system.\n\n20. Recommended Deliverables\n \u00a9 CI/CD;\n \u00ae automated tests;\n e experiment tracking;\n  model versioning;\n \u00a9 decision audit history;\n e deployment versioning;\n e simulation replay;\n e scenario configuration;\n \u00a9 automated fallback;\n o rollback."
+  },
+  {
+    "id": "problem-statement:463-484",
+    "source": "problem-statement",
+    "line": 463,
+    "text": "\n21. Optional Advanced Work\n \u00ab reinforcement learning;\n \u00ae multi-agent decision systems;\n \u00ae optimization + ML hybrids;\n  uncertainty-aware allocation;\n \u00ae counterfactual simulation;\n  automated incident detection;\n \u00ae policy rollback;\n \u00bb drift detection;\n e event-driven architecture;\n \u00a9 streaming systems;\n \u00ae Kubemetes deployment;\n * autoscaling;\n \u00bb generative-Al operations assistants.\nComplexity itself will not guarantee a higher score. The implementation must meaningfully contribute to the\nsolution.\n\n\n                                                         Page 9\n\nEURifEe"
+  },
+  {
+    "id": "problem-statement:485-506",
+    "source": "problem-statement",
+    "line": 485,
+    "text": "\u201cCSE|w\n[FESTIE                                                               BUP CSE FEST 2026 | HACKATHON FINALS\n\n22. Suggested Demonstration Story\n                Normal operations\n\n                Operator dashboard\n\n                Demand starts increasing\n\n                System detects risk\n\n\u201c Intelligence layer predicts shortage\n                Allocation recommendation generated\n\n                Operator inspects recommendation\n\n                Allocation is simulated\n\n                Crisis event occurs\n\n                System adapts"
+  },
+  {
+    "id": "problem-statement:507-528",
+    "source": "problem-statement",
+    "line": 507,
+    "text": "\n     1          Application or dependency failure is injected\n                Monitoring detects failure\n\nn Fallback / recovery activates\n\n\n23. Evaluation Criteria\n   iterion                                   Weight                           What Will Be Assessed\n\n\n Working Product & User Experience           20%                              Functional application, operational\n                                                                              workflow, usability, completeness.\n Intelligence & Decision Quality             20%                              Usefulness and quality of Al /ML/\n                                                                              optimization / detection; appropriate\n                                                                              methodology.\n ;rc;tedure & Integration                    15%                               Backend engineering, simulator\n                                                                               integration, component design, technical\n                                                                               coherence.\n\n DevOps & Engineering Quality                15%                               Deployment, automation, testing,\n                                                                               maintainability, engineering practices."
+  },
+  {
+    "id": "problem-statement:529-550",
+    "source": "problem-statement",
+    "line": 529,
+    "text": " Resilience & Incident Response              10%                               Failure handling, crisis response,\n                                                                               fallback behavior, recovery.\n\n Observability i F;erlum;arnoe               10%                               Monitoring, metrics, logs, health visibility,\n                                                                               load testing.\n\n Demo & Problem unde;st\u00e9nding                10%                               Clear explanation, understanding of\n                                                                               constraints, effective demonstration.\n\nTotal: 100%\n\n\n\n\n                                                            Page 10\n\n                                                                       BUP CSE FEST 2026 | HACKATHON FINALS\n\n\n\n\n24, Constraints and Guardrails"
+  },
+  {
+    "id": "problem-statement:551-572",
+    "source": "problem-statement",
+    "line": 551,
+    "text": " \u00a9 operate only against the simulation environment;\n \u00a9 do not interact with real fuel infrastructure;\n \u00ae do not execute real purchases or dispatches;\n \u00a9 do not use real credentials or private operational systems;\n e distinguish simulated results from real-world fuel conditions;\n e document important assumptions;\n o preserve human review for consequential simulated decisions.\n\n25. Success Criteria\nThe strongest solutions will not necessarily contain the most complicated model. Successful teams will\ndemonstrate that they can tum intelligence into a working engineered system.\n\n Useful Application\n      +\n Meaningful Intelligence\n      +\n Reliable Backend\n     +\n Deployment\n     +\n Observability\n      +"
+  },
+  {
+    "id": "problem-statement:573-594",
+    "source": "problem-statement",
+    "line": 573,
+    "text": " Resilience\n      +\n Measured Performance\n\n Operational Al System\n\n26. Final Challenge Statement\n FINAL CHALLENGE\n Build an intelligent Fuel Supply Operations Platform that can observe a simulated fuel network, identify emerging\n risks, recommend or simulate operational decisions, withstand disruptions, and remain observable and usable\n when components fail.\n\n\nYour team will integrate with the official BUP Fuel Supply Simulator and build the application, backend,\nintelligence layer, deployment workflow, and operational tooling around it.During the hackathon, the\nenvironment may change.\n\n\n\n\n                       Your job is not only to build the system.\n                            Your job is to keep it working."
+  },
+  {
+    "id": "problem-statement:595-596",
+    "source": "problem-statement",
+    "line": 595,
+    "text": "                                                      Page 11\n"
+  },
+  {
+    "id": "integration-guide:1-22",
+    "source": "integration-guide",
+    "line": 1,
+    "text": "In association with \nHACKATHON FINALS\nBUP Fuel Supply Simulator\n\nIntegration and Interaction Guide\nScope: This document covers everything a participant application needs to integrate with the simulator and interact with its API surfaces (REST, SSE, admin). It does not cover challenge framing, deliverables, evaluation criteria, demo narrative, or strategy - see the official participant brief for those.\n\n\n\n\n\n\n\n\n\nWhat is this simulator?\n\nThe BUP Fuel Supply Simulator is a deterministic, locally-runnable environment that models a small Bangladeshi fuel supply chain . There are two regions, two depots, four stations, six routes, three fuel types, and a 15-minute (controllable) tick clock. It exists so hackathon participants can build their own decision-making system against a realistic, reproducible world instead of guessing how a real supply chain behaves.\n\nWhy does it exist?\n\nThe hackathon challenges participants to design a system that moves fuel from depots to stations while keeping stations stocked and customers happy. Real supply chains are noisy, slow, and unfair to compare against. This simulator gives every participant the same world with the same demand curve, the same initial inventory, and the same injected crises, so judges can fairly score their decisions rather than their luck."
+  },
+  {
+    "id": "integration-guide:23-44",
+    "source": "integration-guide",
+    "line": 23,
+    "text": "\nHow do I integrate my system with it?\n\nYour application runs outside the simulator container and talks to it over HTTP. You read the world through REST endpoints (/v1/instance, /v1/depots, /v1/stations, /v1/routes, /v1/supply-arrivals, /v1/demand-history, /v1/metrics, /v1/allocations), listen for change notifications via Server-Sent Events (/v1/stream), and write your fuel-replenishment decisions through exactly one endpoint : POST /v1/allocations. The simulator then runs those decisions against the world, advances time, and reports back what happened.Use the historical and simulated data available through these interfaces to build predictive capabilities and continuously improve your decisions. Treat REST as the source of truth; treat SSE as a hint that something changed.\nTable of Contents\n1.  Fast start\n2.  Hard rules\n3.  Quick reference card\n4.  Public /v1/* endpoints\n5.  POST /v1/allocations ( the only domain write )\n6.  SSE stream /v1/stream\n7.  Admin /admin/* endpoints\n8.  The simulated world\n9.  Status-code cheat sheet\n10.  Defensive client checklist\n\n\n\n\n\n\n"
+  },
+  {
+    "id": "integration-guide:45-66",
+    "source": "integration-guide",
+    "line": 45,
+    "text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1. Fast start\nThe simulator ships as a single docker-compose.yml:\n\nservices:\n  simulator-api:\n    image: asifmahmoud414/bup-fuel-supply-simulator:1.0.0"
+  },
+  {
+    "id": "integration-guide:67-88",
+    "source": "integration-guide",
+    "line": 67,
+    "text": "    environment:\n      SIMULATION_SPEED: ${SIMULATION_SPEED:-8}\n      TICK_MINUTES: ${TICK_MINUTES:-15}\n      SIMULATOR_START_MODE: ${SIMULATOR_START_MODE:-paused}  # Options: paused, running\n    ports:\n      - \"8000:8000\"\n\nSIMULATION_SPEED : Wall-clock ticks per second while running. Higher = faster time.\nTICK_MINUTES : Simulated minutes advanced per tick. Larger = coarser steps.\nSIMULATOR_START_MODE : Start ticking immediately (running) or stay paused until resumed.\n\nStart the stack with:\ndocker compose up -d\ncurl -s http://localhost:8000/v1/health\n2. Hard rules\nThe simulator is the world, not the brain. It does not predict, optimize, recommend, or decide. It executes your POST /v1/allocations calls deterministically and reports what happened.\nREST is the source of truth. Treat SSE as a notification stream \u2014 always re-GET the affected resource after every event.\nThe world is deterministic. Same scenario + same seed + same actions + same injected events \u21d2 byte-identical state, including per-tick demand jitter.\nThe scenario is baked into the image. The active scenario cannot be switched at runtime. The default scenario has no preloaded events.\nOne simulator instance per participant. Single-tenant local. There is no central server.\nDo not modify the simulator source to solve the challenge. Judges run your submission against the published image.\n/admin/* paths bypass all fault injection. To test fault handling, hit /v1/* paths only. /v1/health also bypasses faults (use as liveness probe)."
+  },
+  {
+    "id": "integration-guide:89-110",
+    "source": "integration-guide",
+    "line": 89,
+    "text": "Only allocations can be written from /v1/*. Every other resource is read-only. Crisis events and faults are injected via /admin/* (your app can call them too for self-test scenarios).\n3. Quick reference card\nSetting\nDetails\nBase URL (local)\nhttp://localhost:8000\nSwagger UI\nhttp://localhost:8000/docs\nReDoc\nhttp://localhost:8000/redoc\nSimulator Dashboard\nhttp://localhost:8000/admin\nIdempotency-Key\nNot in headers. Sent as idempotency_key body field on /v1/allocations.\nStale data signal\nX-Simulator-Stale: true response header on /v1/* GETs when a stale-data fault is active.\nDefault tick\n15 simulated minutes per tick (TICK_MINUTES env var)\nDefault speed\n8 ticks/sec wall-clock while RUNNING (SIMULATION_SPEED)\n4. Public /v1/* Endpoints\nEvery endpoint below returns JSON unless noted. All /v1/* endpoints except /v1/health are subject to fault injection; /admin/* are not."
+  },
+  {
+    "id": "integration-guide:111-132",
+    "source": "integration-guide",
+    "line": 111,
+    "text": "4.1 GET /v1/health\nBypasses faults. Use as your liveness probe.\n{\n  \"status\": \"ok\",\n  \"database\": \"ok\",\n  \"simulation\": { \"status\": \"PAUSED\", \"tick\": 0 }\n}\n4.2 GET /v1/instance\nThe simulation instance (there is only one). Read often for current tick, sim_time, and status.\n{\n  \"id\": 1,\n  \"scenario_id\": \"baseline\",\n  \"scenario_version\": \"1.0\",\n  \"seed\": 12345,\n  \"sim_time\": \"2026-01-01T00:00:00+00:00\",\n  \"tick\": 0,\n  \"tick_minutes\": 15,\n  \"status\": \"PAUSED\"\n}\nstatus : {\"PAUSED\", \"RUNNING\"}.\n4.4 GET /v1/regions\n["
+  },
+  {
+    "id": "integration-guide:133-154",
+    "source": "integration-guide",
+    "line": 133,
+    "text": "  { \"id\": \"region-dhaka\",       \"name\": \"Dhaka Division\",       \"demand_factor\": 1.00 },\n  { \"id\": \"region-chattogram\",  \"name\": \"Chattogram Division\",  \"demand_factor\": 1.08 }\n]\n4.5 GET /v1/depots and GET /v1/depots/{entity_id}\n[\n  {\n    \"id\": \"depot-gazipur\",\n    \"name\": \"Gazipur Depot\",\n    \"region_id\": \"region-dhaka\",\n    \"status\": \"OPEN\",\n    \"dispatch_capacity_per_tick\": 12000,\n    \"capacity\":   { \"DIESEL\": 90000, \"PETROL\": 70000, \"OCTANE\": 45000 },\n    \"inventory\":  { \"DIESEL\": 60000, \"PETROL\": 45000, \"OCTANE\": 26000 }\n  }\n]\ndepot.status: {\"OPEN\", \"CONSTRAINED\"}.  404 {\"detail\":{\"code\":\"NOT_FOUND\"}} if id is unknown.\n4.6 GET /v1/stations and GET /v1/stations/{entity_id}\n[\n  {\n    \"id\": \"station-mirpur\",\n    \"name\": \"Mirpur Fuel Station\",\n    \"region_id\": \"region-dhaka\","
+  },
+  {
+    "id": "integration-guide:155-176",
+    "source": "integration-guide",
+    "line": 155,
+    "text": "    \"status\": \"OPEN\",\n    \"demand_profile\": \"urban_high\",\n    \"demand_multiplier\": 1.0,\n    \"capacity\":   { \"DIESEL\": 15000, \"PETROL\": 14000, \"OCTANE\": 9000 },\n    \"inventory\":  { \"DIESEL\":  9000, \"PETROL\":  9000, \"OCTANE\": 5000 }\n  }\n]\nstation.status : {\"OPEN\", \"OUTAGE\"}. demand_multiplier is mutated at runtime by demand_spike events.\n4.7 GET /v1/routes\n[\n  {\n    \"id\": \"route-gazipur-mirpur\",\n    \"source_depot_id\": \"depot-gazipur\",\n    \"destination_station_id\": \"station-mirpur\",\n    \"transit_ticks\": 2,\n    \"max_shipment\": 7000,\n    \"status\": \"AVAILABLE\"\n  }\n]\nroute.status : {\"AVAILABLE\", \"DISRUPTED\"}.\n4.8 GET /v1/supply-arrivals\nSorted by planned_tick ascending."
+  },
+  {
+    "id": "integration-guide:177-198",
+    "source": "integration-guide",
+    "line": 177,
+    "text": "[\n  {\n    \"id\": \"supply-001\",\n    \"depot_id\": \"depot-gazipur\",\n    \"fuel_type\": \"DIESEL\",\n    \"quantity\": 18000,\n    \"planned_tick\": 12,\n    \"actual_tick\": null,\n    \"status\": \"SCHEDULED\"\n  }\n]\nstatus : {\"SCHEDULED\", \"DELAYED\", \"ARRIVED\"}.\n\n4.9 GET /v1/events\nDomain events (injected by you or preloaded by the scenario file), id-desc.\n[\n  {\n    \"id\": 1,\n    \"type\": \"demand_spike\",\n    \"start_tick\": 8,\n    \"end_tick\": 20,\n    \"status\": \"RESOLVED\","
+  },
+  {
+    "id": "integration-guide:199-220",
+    "source": "integration-guide",
+    "line": 199,
+    "text": "    \"parameters\": { \"region_ids\": [\"region-dhaka\"], \"multiplier\": 1.8 }\n  }\n]\nstatus : {\"SCHEDULED\", \"ACTIVE\", \"RESOLVED\"}.\n4.10 GET /v1/allocations\nSorted id-desc. Every allocation your app has created (and any preloaded ones).\n[\n  {\n    \"id\": 1,\n    \"idempotency_key\": \"demo-001\",\n    \"source_depot_id\": \"depot-gazipur\",\n    \"destination_station_id\": \"station-mirpur\",\n    \"route_id\": \"route-gazipur-mirpur\",\n    \"fuel_type\": \"DIESEL\",\n    \"quantity\": 3000,\n    \"created_tick\": 5,\n    \"departure_tick\": 6,\n    \"expected_arrival_tick\": 8,\n    \"actual_arrival_tick\": 8,\n    \"status\": \"ARRIVED\",\n    \"failure_reason\": null\n  }"
+  },
+  {
+    "id": "integration-guide:221-242",
+    "source": "integration-guide",
+    "line": 221,
+    "text": "]\nstatus : {\"PENDING\", \"IN_TRANSIT\", \"ARRIVED\", \"FAILED\", \"CANCELLED\"}.\n4.11 GET /v1/demand-history?station_id=&limit=\nTime-series of demand observations. limit is clamped to [1, 2000], default 200. The table grows unboundedly \u2014 always call with a limit and filter to recent N.\n[\n  {\n    \"id\": 100,\n    \"station_id\": \"station-mirpur\",\n    \"fuel_type\": \"DIESEL\",\n    \"tick\": 12,\n    \"sim_time\": \"2026-01-01T03:00:00+00:00\",\n    \"demand_liters\": 95.123,\n    \"served_liters\": 95.123,\n    \"unmet_liters\": 0.0\n  }\n]\nA row is inserted per (station_id, fuel_type) per tick -> 4 stations \u00d7 3 fuels = 12 rows per tick.\n4.12 GET /v1/metrics\nAggregated ground-truth metrics since simulation start.\n{\n  \"served_demand_liters\": 12345.678,\n  \"unmet_demand_liters\":    234.567,"
+  },
+  {
+    "id": "integration-guide:243-264",
+    "source": "integration-guide",
+    "line": 243,
+    "text": "  \"service_level\":          0.981408,\n  \"allocation_liters\":     9800.000,\n  \"allocation_failures\":   2\n}\nservice_level = served / (served + unmet) \u2014 1.0 means zero unmet demand.\nallocation_liters counts only IN_TRANSIT + ARRIVED shipments (not PENDING, FAILED, CANCELLED).\nallocation_failures is the count of status=\"FAILED\" allocations (route disruption at departure time).\n5. POST /v1/allocations \u2014 the only domain write\nThis is the only domain-mutating endpoint participants should call from /v1/*.\n5.1 Request\nPOST /v1/allocations\nContent-Type: application/json\n\n{\n  \"idempotency_key\": \"demo-001\",\n  \"source_depot_id\": \"depot-gazipur\",\n  \"destination_station_id\": \"station-mirpur\",\n  \"route_id\": \"route-gazipur-mirpur\",\n  \"fuel_type\": \"DIESEL\",\n  \"quantity\": 3000\n}\n"
+  },
+  {
+    "id": "integration-guide:265-286",
+    "source": "integration-guide",
+    "line": 265,
+    "text": "Field\nType\nRequired\nConstraints\nidempotency_key\nstring\nyes\nlength 1\u2013150, unique unless replaying the exact same request\nsource_depot_id\nstring\nyes\nmust exist in /v1/depots\ndestination_station_id\nstring\nyes\nmust exist in /v1/stations\nroute_id\nstring\nyes\nmust exist in /v1/routes\nfuel_type\nenum"
+  },
+  {
+    "id": "integration-guide:287-308",
+    "source": "integration-guide",
+    "line": 287,
+    "text": "yes\nDIESEL | PETROL | OCTANE\nquantity\nfloat\nyes\n> 0, \u2264 route.max_shipment\n5.2 Validation order (first failure wins)\nIdempotency check \u2014 see 5.5.\nNOT_FOUND (404) if depot, station, or route id is unknown.\nROUTE_MISMATCH (409) if the route's (source_depot_id, destination_station_id) \u2260 the ones in your request.\nDEPOT_CLOSED (409) if depot.status is not in {\"OPEN\", \"CONSTRAINED\"}.\nSTATION_CLOSED (409) if station.status != \"OPEN\".\nROUTE_DISRUPTED (409) if route.status != \"AVAILABLE\".\nROUTE_CAPACITY_EXCEEDED (409) if quantity > route.max_shipment.\nINSUFFICIENT_INVENTORY (409) if depot.inventory[fuel] < quantity.\nDISPATCH_CAPACITY_EXCEEDED (409) if (sum of in-flight + pending quantities from this depot on this tick) + quantity > depot.dispatch_capacity_per_tick.\nDESTINATION_CAPACITY_EXCEEDED (409) if station.inventory[fuel] + quantity > station.capacity[fuel].\n5.3 Success response (201 Created)\n{\n  \"id\": 1,\n  \"idempotency_key\": \"demo-001\",\n  \"source_depot_id\": \"depot-gazipur\","
+  },
+  {
+    "id": "integration-guide:309-330",
+    "source": "integration-guide",
+    "line": 309,
+    "text": "  \"destination_station_id\": \"station-mirpur\",\n  \"route_id\": \"route-gazipur-mirpur\",\n  \"fuel_type\": \"DIESEL\",\n  \"quantity\": 3000,\n  \"created_tick\": 5,\n  \"departure_tick\": null,\n  \"expected_arrival_tick\": null,\n  \"actual_arrival_tick\": null,\n  \"status\": \"PENDING\",\n  \"failure_reason\": null\n}\n5.4 Idempotency rules\nSame key, same body \u2192 return existing allocation (HTTP 201, not 200). Safe retry.\nSame key, different body \u2192 409 IDEMPOTENCY_KEY_MISMATCH. The first submission wins; you must use a new key.\nCancellation does NOT free the key. Once used, an idempotency_key is permanently occupied.\n5.5 POST /v1/allocations/{allocation_id}/cancel\nRefunds the depot inventory and marks the allocation CANCELLED. Only valid for status=\"PENDING\".\n200 OK with the updated allocation.\n404 ALLOCATION_NOT_FOUND if id unknown.\n409 CANNOT_CANCEL if status \u2260 PENDING.\n6. SSE stream /v1/stream\nGET /v1/stream returns text/event-stream. It is the only way to receive push notifications from the simulator."
+  },
+  {
+    "id": "integration-guide:331-352",
+    "source": "integration-guide",
+    "line": 331,
+    "text": "6.1 Wire protocol\nOn connect: server sends : connected\\n\\n (SSE comment, ignore).\nEach event: event: <name>\\ndata: <json>\\n\\n\nAfter 15 seconds of silence: : keepalive\\n\\n.\nBuffer: asyncio.Queue(maxsize=200) per subscriber. If you fall behind by >200 events, your queue is silently dropped and the stream will keep flowing to other subscribers. You must reconnect.\n6.2 Reconnection\nThere is no Last-Event-ID replay. On reconnect you get : connected\\n\\n and then only events from that moment forward. Always re-fetch your state via REST after a reconnect.\n6.3 Event names + payloads\n\nEvent name\nWhen\nPayload\nsimulation.tick\nEnd of every tick\n{\"tick\": <int>, \"sim_time\": \"<ISO-8601>\"}\nallocation.status_changed\nAllocation created / departed / arrived / failed / cancelled\nserialize(allocation) \u2014 full allocation object\ninventory.updated\nDepot inventory changed\n{\"entity_type\":\"depot\",\"entity_id\":\"<id>\",\"inventory\":{...}}\nsimulator.notice"
+  },
+  {
+    "id": "integration-guide:353-374",
+    "source": "integration-guide",
+    "line": 353,
+    "text": "POST /admin/reset, background-runner exception\n{\"message\":\"...\"} or {\"level\":\"error\",\"message\":\"...\"}\n\nAudit-log action values like event.started, event.resolved, supply.arrived, allocation.departed, allocation.arrived, simulation.tick are not SSE event names \u2014 read them via GET /admin/audit.\n6.4 Fault interaction\nIf a stream_disconnect fault is active, GET /v1/stream returns 503 {\"detail\":{\"code\":\"FAULT_INJECTED\"}} instead of opening the stream.\nIf a stale_data fault is active, non-stream /v1/* GET responses include X-Simulator-Stale: true. The SSE stream itself does not.\n7. Admin /admin/* endpoints\nAll /admin/* paths bypass fault injection. Designed for organizer use, but participants will find them invaluable for self-testing (injecting events, advancing ticks deterministically, clearing faults).\n7.1 GET /admin\nServer-rendered HTML console. Auto-refreshes every 2 seconds. Shows live instance state, metrics, row counts, recent audit log, and forms to inject events / faults and run/pause/step/reset the simulation. Useful for visual debugging.\n7.2 POST /admin/run \u2014 start the simulation\nSets SimulationInstance.status = \"RUNNING\". The background runner begins ticking.\n7.3 POST /admin/pause \u2014 pause the simulation\nSets SimulationInstance.status = \"PAUSED\". The background runner idles; existing PENDING / IN_TRANSIT allocations stay frozen.\n7.4 POST /admin/toggle \u2014 flip RUNNING \u2194 PAUSED\nConvenience for UIs.\n7.5 POST /admin/step \u2014 deterministic single-tick advance\nCalls tick_once() exactly once. Works regardless of status (you can step while PAUSED). Returns:\n\n{ \"tick\": 6, \"sim_time\": \"2026-01-01T01:30:00+00:00\" }\nThis is the recommended way to drive deterministic tests. Pause, run your allocations, then call /admin/step a known number of times for reproducible outcomes."
+  },
+  {
+    "id": "integration-guide:375-396",
+    "source": "integration-guide",
+    "line": 375,
+    "text": "7.6 POST /admin/reset \u2014 wipe everything and reload the active scenario\nHard reset. Deletes every row from demand_observations, allocations, events, faults, audit_logs, supply_arrivals, routes, stations, depots, regions, and simulation_instances, then reloads from the baked scenario YAML. Publishes simulator.notice {message: \"Simulation reset\"}.\n7.7 POST /admin/events \u2014 inject a crisis event\nPOST /admin/events\nContent-Type: application/json\n\n{\n  \"type\": \"demand_spike\",\n  \"start_tick\": 8,\n  \"duration_ticks\": 12,\n  \"parameters\": { \"region_ids\": [\"region-dhaka\"], \"multiplier\": 1.8 }\n}\n\nField\nType\nRequired\nConstraints\ntype\nenum\nyes\none of six values (see \u00a77.8)\nstart_tick"
+  },
+  {
+    "id": "integration-guide:397-418",
+    "source": "integration-guide",
+    "line": 397,
+    "text": "int\nyes\n>= 0\nduration_ticks\nint\nyes\n> 0\nparameters\nobject\nno\ndefaults to {}\n\nend_tick = start_tick + duration_ticks. Returns 201 Created with the persisted event.\n7.8 Event-type parameter shapes\n\ntype\nParameters\nEffect while ACTIVE\nReversed on RESOLVE\ndemand_spike\nmultiplier (def 1.5), station_ids[], region_ids[]\nmultiplies each affected station's demand_multiplier by multiplier"
+  },
+  {
+    "id": "integration-guide:419-440",
+    "source": "integration-guide",
+    "line": 419,
+    "text": "divides by multiplier (\u2265 0.01)\nroute_disruption\nroute_ids[]\nsets each route \u2192 DISRUPTED\nroutes \u2192 AVAILABLE\nstation_outage\nstation_ids[]\nsets each station \u2192 OUTAGE (served drops to 0)\nstations \u2192 OPEN\ndepot_constraint\ndepot_ids[]\nsets each depot \u2192 CONSTRAINED (still shippable, but signals reduced capacity)\ndepots \u2192 OPEN\nshipment_delay\ndelay_ticks (def 2), depot_ids[], fuel_types[]\nSupplyArrival.planned_tick += delay_ticks, status \u2192 DELAYED\none-shot \u2014 does not auto-undo\nsupply_shortfall\nfactor (def 0.5), depot_ids[], fuel_types[]\nSupplyArrival.quantity *= factor\none-shot \u2014 does not auto-restore\n"
+  },
+  {
+    "id": "integration-guide:441-462",
+    "source": "integration-guide",
+    "line": 441,
+    "text": "station_ids / region_ids / route_ids / depot_ids are filters: if the list is empty, the event applies to all entities of that type. fuel_types works the same way.\n7.9 POST /admin/faults \u2014 inject a fault\nPOST /admin/faults\nContent-Type: application/json\n\n{\n  \"type\": \"stale_data\",\n  \"duration_seconds\": 60,\n  \"parameters\": {}\n}\n\nField\nType\nRequired\nConstraints\ntype\nenum\nyes\none of five values (see \u00a77.10)\nduration_seconds\nint\nyes"
+  },
+  {
+    "id": "integration-guide:463-484",
+    "source": "integration-guide",
+    "line": 463,
+    "text": "0 < x \u2264 3600\nparameters\nobject\nno\ndefaults to {}\n\nstart_wall_time = now(), end_wall_time = now() + duration_seconds, active=true. Auto-expires \u2014 no need to clear manually unless you want to.\n7.10 Fault-type effects\n\ntype\nparameters\nEffect on /v1/* (not /admin/*, not /v1/health)\nlatency\n{ \"delay_ms\": 500 } (default 500)\nsleeps delay_ms / 1000 seconds before every non-admin, non-health request\nunavailable\n\u2014\nreturns 503 {\"error\":{\"code\":\"FAULT_INJECTED\",\"message\":\"Simulator API temporarily unavailable.\"}}\nerror_rate\n{ \"rate\": 0.25 } (default 0.25)\nwith probability rate, returns 503 {\"error\":{\"code\":\"FAULT_INJECTED\",\"message\":\"Injected transient API error.\"}}\nstale_data"
+  },
+  {
+    "id": "integration-guide:485-506",
+    "source": "integration-guide",
+    "line": 485,
+    "text": "\u2014\ndoes NOT block requests; adds X-Simulator-Stale: true to /v1/* GET responses\nstream_disconnect\n\u2014\nGET /v1/stream returns 503 {\"detail\":{\"code\":\"FAULT_INJECTED\"}} (note: nested under detail, not error)\n7.11 POST /admin/faults/clear\nSets active = false on every active Fault. Idempotent. Returns {\"status\": \"cleared\"}.\n7.12 GET /admin/audit?limit=\nlimit clamped to [1, 1000], default 200. Sorted id-desc. This is the ground-truth audit log of everything the simulator has done.\n[\n  {\n    \"id\": 142,\n    \"wall_time\": \"2026-01-01T00:15:00.512345+00:00\",\n    \"sim_time\": \"2026-01-01T00:14:00+00:00\",\n    \"tick\": 0,\n    \"action\": \"allocation.created\",\n    \"entity_type\": \"allocation\",\n    \"entity_id\": \"1\",\n    \"result\": \"OK\",\n    \"metadata_json\": { \"quantity\": 3000, \"fuel_type\": \"DIESEL\" }\n  }\n]"
+  },
+  {
+    "id": "integration-guide:507-528",
+    "source": "integration-guide",
+    "line": 507,
+    "text": "Useful action values: simulation.tick, allocation.created, allocation.departed, allocation.arrived, allocation.cancelled, event.created, event.started, event.resolved, supply.arrived, admin.run, admin.pause, fault.created, fault.clear_all.\n7.13 GET /admin/faults and GET /admin/events\nLast 50 rows each, id-desc. Useful for visualizing the fault/event timeline.\n8. The simulated world\nThe active scenario is baked into the image. The shipped image runs baseline.yaml (no preloaded events). All scenarios share the same fixed world below; they differ only in seed and preloaded events.\n8.1 Regions (2)\n\nid\nname\ndemand_factor\nregion-dhaka\nDhaka Division\n1.00\nregion-chattogram\nChattogram Division\n1.08\n8.2 Depots (2)\n\nid\nregion\ndispatch / tick\ncapacity (D/P/O)"
+  },
+  {
+    "id": "integration-guide:529-550",
+    "source": "integration-guide",
+    "line": 529,
+    "text": "initial inventory (D/P/O)\ndepot-gazipur\nregion-dhaka\n12,000\n90,000 / 70,000 / 45,000\n60,000 / 45,000 / 26,000\ndepot-patiya\nregion-chattogram\n11,000\n85,000 / 65,000 / 40,000\n55,000 / 42,000 / 24,000\n8.3 Stations (4)\n\nid\nregion\ndemand_profile\ncapacity (D/P/O)\ninitial inventory (D/P/O)\nstation-mirpur\nregion-dhaka\nurban_high\n15,000 / 14,000 / 9,000"
+  },
+  {
+    "id": "integration-guide:551-572",
+    "source": "integration-guide",
+    "line": 551,
+    "text": "9,000 / 9,000 / 5,000\nstation-tongi\nregion-dhaka\nindustrial\n18,000 / 9,000 / 6,000\n11,000 / 6,000 / 3,500\nstation-karnaphuli\nregion-chattogram\nhighway\n14,000 / 15,000 / 9,000\n8,500 / 9,500 / 5,200\nstation-coxsbazar\nregion-chattogram\nregional\n12,000 / 12,000 / 7,000\n7,500 / 7,500 / 4,200\n8.4 Routes (6)\n\nid\ndepot\nstation\ntransit_ticks"
+  },
+  {
+    "id": "integration-guide:573-594",
+    "source": "integration-guide",
+    "line": 573,
+    "text": "max_shipment\nroute-gazipur-mirpur\ndepot-gazipur\nstation-mirpur\n2\n7,000\nroute-gazipur-tongi\ndepot-gazipur\nstation-tongi\n2\n6,500\nroute-patiya-karnaphuli\ndepot-patiya\nstation-karnaphuli\n2\n7,000\nroute-patiya-coxsbazar\ndepot-patiya\nstation-coxsbazar\n3\n6,000\nroute-gazipur-karnaphuli"
+  },
+  {
+    "id": "integration-guide:595-616",
+    "source": "integration-guide",
+    "line": 595,
+    "text": "depot-gazipur\nstation-karnaphuli\n4\n5,000\nroute-patiya-mirpur\ndepot-patiya\nstation-mirpur\n4\n5,000\n8.5 Demand profiles (liters per simulated day)\n\nprofile\nDIESEL\nPETROL\nOCTANE\nnoise\nurban_high\n8,500\n10,500\n5,600\n0.10\nindustrial"
+  },
+  {
+    "id": "integration-guide:617-638",
+    "source": "integration-guide",
+    "line": 617,
+    "text": "14,000\n4,500\n2,200\n0.08\nhighway\n10,500\n11,000\n6,200\n0.12\nregional\n7,200\n7,600\n3,600\n0.10\n8.6 Hour-of-day factors\n\nprofile\nbusy hours (factor)\noff-peak hours (factor)\nindustrial\n06:00\u201317:59 \u2192 1.55\n18:00\u201305:59 \u2192 0.45"
+  },
+  {
+    "id": "integration-guide:639-660",
+    "source": "integration-guide",
+    "line": 639,
+    "text": "highway\n06\u201309 or 16\u201320 \u2192 1.35\nelse \u2192 0.75\nurban_high\n07\u201309 or 16\u201320 \u2192 1.45\nelse \u2192 0.70\nregional\n07:00\u201320:59 \u2192 1.25\n21:00\u201306:59 \u2192 0.65\n8.7 Supply arrival pattern\nAll scenarios share the same 22-arrival schedule:\n4 \"initial burst\" arrivals at ticks 12\u201320 to cover day 1.\n18 \"recurring resupply\" arrivals spaced 64 ticks apart (~16 simulated hours), top-up quantities sized to roughly one day's regional demand.\n9. Status-code cheat sheet\nAll /v1/allocations errors come back as {\"detail\": {\"code\": \"<UPPER_SNAKE>\", \"message\": \"...\"}}. Injected faults return {\"error\": {\"code\": \"FAULT_INJECTED\", \"message\": \"...\"}} (note the difference: error vs detail). Pydantic validation errors use FastAPI's default {\"detail\":[...]}.\n\nHTTP\nCode\nTrigger\nRecommended handling\n200\n\u2014"
+  },
+  {
+    "id": "integration-guide:661-682",
+    "source": "integration-guide",
+    "line": 661,
+    "text": "Idempotent replay of an existing allocation\nContinue normally.\n201\n\u2014\nNew allocation accepted\nCache the returned id.\n404\nNOT_FOUND\nDepot, station, or route id unknown\nCheck your ids against /v1/depots / /v1/stations / /v1/routes.\n404\nALLOCATION_NOT_FOUND\nCancel on unknown allocation id\nCheck /v1/allocations for the current id.\n409\nIDEMPOTENCY_KEY_MISMATCH\nSame idempotency_key, different body\nUse a new key for the new request; the first wins.\n409\nROUTE_MISMATCH\nRoute connects different endpoints than your request\nUse a route that matches your (depot, station) pair."
+  },
+  {
+    "id": "integration-guide:683-704",
+    "source": "integration-guide",
+    "line": 683,
+    "text": "409\nDEPOT_CLOSED\nDepot status not in {OPEN, CONSTRAINED}\nWait for depot_constraint event to resolve.\n409\nSTATION_CLOSED\nStation status \u2260 OPEN\nWait for station_outage event to resolve.\n409\nROUTE_DISRUPTED\nRoute status \u2260 AVAILABLE\nWait for route_disruption event to resolve, or pick another route.\n409\nROUTE_CAPACITY_EXCEEDED\nquantity > route.max_shipment\nSplit into multiple smaller allocations.\n409\nINSUFFICIENT_INVENTORY\nDepot doesn't have the fuel\nRe-fetch depot inventory; wait for next supply arrival.\n409\nDISPATCH_CAPACITY_EXCEEDED"
+  },
+  {
+    "id": "integration-guide:705-726",
+    "source": "integration-guide",
+    "line": 705,
+    "text": "Sum of this depot's in-flight + pending on this tick > dispatch_capacity_per_tick\nWait for the next tick (PENDING allocations free up).\n409\nDESTINATION_CAPACITY_EXCEEDED\nstation.inventory[fuel] + quantity > station.capacity[fuel]\nWait for station demand to consume fuel.\n409\nCANNOT_CANCEL\nCancel on non-PENDING allocation\nThe shipment is already in motion; you cannot recover it.\n422\n(Pydantic)\nBad enum, missing field, duration_ticks=0, quantity \u2264 0, etc.\nValidate your payload client-side first.\n503\nFAULT_INJECTED\nActive unavailable / error_rate / stream_disconnect fault\nImplement backoff + retry + degraded mode. See \u00a710.\n10. Defensive client checklist\nEvery robust participant client should handle all of these gracefully:\n\nGET /v1/health        \u2014 liveness check (bypasses faults)"
+  },
+  {
+    "id": "integration-guide:727-748",
+    "source": "integration-guide",
+    "line": 727,
+    "text": "GET /v1/instance      \u2014 current tick, sim_time, status, seed\nGET /v1/depots        \u2014 capacity, inventory, dispatch_capacity_per_tick\nGET /v1/stations      \u2014 inventory, demand_multiplier, capacity\nGET /v1/routes        \u2014 availability, max_shipment, transit_ticks\nGET /v1/supply-arrivals \u2014 upcoming deliveries\nGET /v1/events        \u2014 past/active/scheduled crisis events\nGET /v1/allocations   \u2014 your shipment ledger\nGET /v1/demand-history \u2014 time-series for forecasting (limit 1-2000)\nGET /v1/metrics       \u2014 service_level + allocation_failures\nPOST /v1/allocations  \u2014 submit shipment, returns 201/200/404/409/503\nPOST /v1/allocations/{id}/cancel \u2014 refunds PENDING only\nGET  /v1/stream       \u2014 SSE feed (queue size 200; 15s keepalive)\n\n\nSSE rules:\nTreat SSE as advisory \u2014 re-GET REST state after every interesting event.\nWatch X-Simulator-Stale: true on /v1/* GETs and invalidate any local cache.\nIf a stream_disconnect fault is active, GET /v1/stream returns 503 \u2014 back off and retry.\nIf your queue falls >200 events behind, you will be silently dropped. Reconnect and refetch state.\nThere is no Last-Event-ID replay. On reconnect, you only get events from that moment forward.\nA 15-second silence is normal (keepalive); do not treat it as a disconnect.\n"
+  }
+]

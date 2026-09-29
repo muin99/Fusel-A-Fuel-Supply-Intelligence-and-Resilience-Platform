@@ -1,0 +1,281 @@
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: { name: fuel-ops-postgres }
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests: { storage: 2Gi }
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fuel-ops-api
+spec:
+  selector: { app: fuel-ops-api }
+  ports:
+    - port: 4000
+      targetPort: 4000
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fuel-ops-postgres
+spec:
+  selector: { app: fuel-ops-postgres }
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fuel-ops-redis
+spec:
+  selector: { app: fuel-ops-redis }
+  ports:
+    - port: 6379
+      targetPort: 6379
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fuel-ops-simulator
+spec:
+  selector: { app: fuel-ops-simulator }
+  ports:
+    - port: 8000
+      targetPort: 8000
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fuel-ops-web
+spec:
+  selector: { app: fuel-ops-web }
+  ports:
+    - port: 3000
+      targetPort: 3000
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fuel-ops-api
+  labels: { app: fuel-ops-api, version: "1.0.0" }
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels: { app: fuel-ops-api }
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: { app: fuel-ops-api }
+    spec:
+      containers:
+        - name: api
+          image: "fuel-ops-api:1.0.0"
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: 4000 }]
+          env:
+            - name: AUTO_DISPATCH
+              value: "false"
+            - name: NODE_ENV
+              value: "production"
+            - name: REDIS_URL
+              value: "redis://fuel-ops-redis:6379"
+            - name: SIMULATOR_URL
+              value: "http://fuel-ops-simulator:8000"
+          envFrom:
+            - secretRef: { name: fuel-ops-env }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { cpu: "1", memory: 512Mi }
+          readinessProbe:
+            httpGet: { path: /api/health/live, port: 4000 }
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /api/health/live, port: 4000 }
+            initialDelaySeconds: 60
+            periodSeconds: 15
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fuel-ops-postgres
+  labels: { app: fuel-ops-postgres, version: "1.0.0" }
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels: { app: fuel-ops-postgres }
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: { app: fuel-ops-postgres }
+    spec:
+      containers:
+        - name: postgres
+          image: "postgres:17-alpine"
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: 5432 }]
+          env:
+            - name: PGDATA
+              value: "/var/lib/postgresql/data/pgdata"
+            - name: POSTGRES_DB
+              value: "fuelops"
+            - name: POSTGRES_USER
+              value: "fuelops"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: fuel-ops-env, key: POSTGRES_PASSWORD }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { cpu: "1", memory: 512Mi }
+          readinessProbe:
+            tcpSocket: { port: 5432 }
+            initialDelaySeconds: 5
+          volumeMounts:
+            - { name: data, mountPath: /var/lib/postgresql/data }
+      volumes:
+        - name: data
+          persistentVolumeClaim: { claimName: fuel-ops-postgres }
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fuel-ops-redis
+  labels: { app: fuel-ops-redis, version: "1.0.0" }
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels: { app: fuel-ops-redis }
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: { app: fuel-ops-redis }
+    spec:
+      containers:
+        - name: redis
+          image: "redis:7-alpine"
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: 6379 }]
+          env:
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { cpu: "1", memory: 512Mi }
+          readinessProbe:
+            tcpSocket: { port: 6379 }
+            initialDelaySeconds: 5
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fuel-ops-simulator
+  labels: { app: fuel-ops-simulator, version: "1.0.0" }
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels: { app: fuel-ops-simulator }
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: { app: fuel-ops-simulator }
+    spec:
+      containers:
+        - name: simulator
+          image: "asifmahmoud414/bup-fuel-supply-simulator:1.0.0"
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: 8000 }]
+          env:
+            - name: SIMULATION_SPEED
+              value: "8"
+            - name: SIMULATOR_START_MODE
+              value: "paused"
+            - name: TICK_MINUTES
+              value: "15"
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { cpu: "1", memory: 512Mi }
+          readinessProbe:
+            httpGet: { path: /v1/health, port: 8000 }
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /v1/health, port: 8000 }
+            initialDelaySeconds: 60
+            periodSeconds: 15
+---
+# Source: fuel-ops/templates/scaling.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: { name: fuel-ops-web }
+spec:
+  scaleTargetRef:
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: fuel-ops-web
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: { type: Utilization, averageUtilization: 70 }
+---
+# Source: fuel-ops/templates/stack.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: fuel-ops-web
+  labels: { app: fuel-ops-web, version: "1.0.0" }
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels: { app: fuel-ops-web }
+  strategy:
+    canary:
+      steps:
+        - setWeight: 25
+        - pause: { duration: 60s }
+        - setWeight: 50
+        - pause: {}
+  template:
+    metadata:
+      labels: { app: fuel-ops-web }
+    spec:
+      containers:
+        - name: web
+          image: "fuel-ops-web:1.0.0"
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: 3000 }]
+          env:
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { cpu: "1", memory: 512Mi }
+          readinessProbe:
+            httpGet: { path: /, port: 3000 }
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /, port: 3000 }
+            initialDelaySeconds: 60
+            periodSeconds: 15

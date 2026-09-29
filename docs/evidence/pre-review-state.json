@@ -1,0 +1,564 @@
+{
+  "instance": {
+    "id": 1,
+    "scenario_id": "baseline",
+    "scenario_version": "1.0",
+    "seed": 12345,
+    "sim_time": "2026-01-27T19:00:00",
+    "tick": 2572,
+    "tick_minutes": 15,
+    "status": "RUNNING"
+  },
+  "regions": [
+    {
+      "id": "region-dhaka",
+      "name": "Dhaka Division",
+      "demand_factor": 1
+    },
+    {
+      "id": "region-chattogram",
+      "name": "Chattogram Division",
+      "demand_factor": 1.08
+    }
+  ],
+  "depots": [
+    {
+      "id": "depot-gazipur",
+      "name": "Gazipur Depot",
+      "region_id": "region-dhaka",
+      "status": "OPEN",
+      "dispatch_capacity_per_tick": 12000,
+      "capacity": {
+        "DIESEL": 90000,
+        "PETROL": 70000,
+        "OCTANE": 45000
+      },
+      "inventory": {
+        "DIESEL": 90000,
+        "PETROL": 70000,
+        "OCTANE": 45000
+      }
+    },
+    {
+      "id": "depot-patiya",
+      "name": "Patiya Depot",
+      "region_id": "region-chattogram",
+      "status": "OPEN",
+      "dispatch_capacity_per_tick": 11000,
+      "capacity": {
+        "DIESEL": 85000,
+        "PETROL": 65000,
+        "OCTANE": 40000
+      },
+      "inventory": {
+        "DIESEL": 85000,
+        "PETROL": 65000,
+        "OCTANE": 40000
+      }
+    }
+  ],
+  "stations": [
+    {
+      "id": "station-mirpur",
+      "name": "Mirpur Fuel Station",
+      "region_id": "region-dhaka",
+      "status": "OPEN",
+      "demand_profile": "urban_high",
+      "demand_multiplier": 0.9999999999999998,
+      "capacity": {
+        "DIESEL": 15000,
+        "PETROL": 14000,
+        "OCTANE": 9000
+      },
+      "inventory": {
+        "DIESEL": 0,
+        "PETROL": 0,
+        "OCTANE": 0
+      }
+    },
+    {
+      "id": "station-tongi",
+      "name": "Tongi Industrial Station",
+      "region_id": "region-dhaka",
+      "status": "OPEN",
+      "demand_profile": "industrial",
+      "demand_multiplier": 0.9999999999999998,
+      "capacity": {
+        "DIESEL": 18000,
+        "PETROL": 9000,
+        "OCTANE": 6000
+      },
+      "inventory": {
+        "DIESEL": 0,
+        "PETROL": 0,
+        "OCTANE": 0
+      }
+    },
+    {
+      "id": "station-karnaphuli",
+      "name": "Karnaphuli Highway Station",
+      "region_id": "region-chattogram",
+      "status": "OPEN",
+      "demand_profile": "highway",
+      "demand_multiplier": 1,
+      "capacity": {
+        "DIESEL": 14000,
+        "PETROL": 15000,
+        "OCTANE": 9000
+      },
+      "inventory": {
+        "DIESEL": 0,
+        "PETROL": 0,
+        "OCTANE": 0
+      }
+    },
+    {
+      "id": "station-coxsbazar",
+      "name": "Cox's Bazar Regional Station",
+      "region_id": "region-chattogram",
+      "status": "OPEN",
+      "demand_profile": "regional",
+      "demand_multiplier": 1,
+      "capacity": {
+        "DIESEL": 12000,
+        "PETROL": 12000,
+        "OCTANE": 7000
+      },
+      "inventory": {
+        "DIESEL": 0,
+        "PETROL": 0,
+        "OCTANE": 0
+      }
+    }
+  ],
+  "routes": [
+    {
+      "id": "route-gazipur-mirpur",
+      "source_depot_id": "depot-gazipur",
+      "destination_station_id": "station-mirpur",
+      "transit_ticks": 2,
+      "max_shipment": 7000,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "route-gazipur-tongi",
+      "source_depot_id": "depot-gazipur",
+      "destination_station_id": "station-tongi",
+      "transit_ticks": 2,
+      "max_shipment": 6500,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "route-patiya-karnaphuli",
+      "source_depot_id": "depot-patiya",
+      "destination_station_id": "station-karnaphuli",
+      "transit_ticks": 2,
+      "max_shipment": 7000,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "route-patiya-coxsbazar",
+      "source_depot_id": "depot-patiya",
+      "destination_station_id": "station-coxsbazar",
+      "transit_ticks": 3,
+      "max_shipment": 6000,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "route-gazipur-karnaphuli",
+      "source_depot_id": "depot-gazipur",
+      "destination_station_id": "station-karnaphuli",
+      "transit_ticks": 4,
+      "max_shipment": 5000,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "route-patiya-mirpur",
+      "source_depot_id": "depot-patiya",
+      "destination_station_id": "station-mirpur",
+      "transit_ticks": 4,
+      "max_shipment": 5000,
+      "status": "AVAILABLE"
+    }
+  ],
+  "supplyArrivals": [
+    {
+      "id": "supply-001",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "DIESEL",
+      "quantity": 18000,
+      "planned_tick": 12,
+      "actual_tick": 12,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-003",
+      "depot_id": "depot-patiya",
+      "fuel_type": "DIESEL",
+      "quantity": 16000,
+      "planned_tick": 14,
+      "actual_tick": 14,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-002",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "PETROL",
+      "quantity": 14000,
+      "planned_tick": 16,
+      "actual_tick": 16,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-004",
+      "depot_id": "depot-patiya",
+      "fuel_type": "OCTANE",
+      "quantity": 9000,
+      "planned_tick": 20,
+      "actual_tick": 20,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-101",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "DIESEL",
+      "quantity": 12000,
+      "planned_tick": 72,
+      "actual_tick": 72,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-102",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "PETROL",
+      "quantity": 10000,
+      "planned_tick": 76,
+      "actual_tick": 76,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-104",
+      "depot_id": "depot-patiya",
+      "fuel_type": "DIESEL",
+      "quantity": 10000,
+      "planned_tick": 76,
+      "actual_tick": 76,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-103",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "OCTANE",
+      "quantity": 7000,
+      "planned_tick": 80,
+      "actual_tick": 80,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-105",
+      "depot_id": "depot-patiya",
+      "fuel_type": "PETROL",
+      "quantity": 8000,
+      "planned_tick": 80,
+      "actual_tick": 80,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-106",
+      "depot_id": "depot-patiya",
+      "fuel_type": "OCTANE",
+      "quantity": 6000,
+      "planned_tick": 84,
+      "actual_tick": 84,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-201",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "DIESEL",
+      "quantity": 12000,
+      "planned_tick": 136,
+      "actual_tick": 136,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-202",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "PETROL",
+      "quantity": 10000,
+      "planned_tick": 140,
+      "actual_tick": 140,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-204",
+      "depot_id": "depot-patiya",
+      "fuel_type": "DIESEL",
+      "quantity": 10000,
+      "planned_tick": 140,
+      "actual_tick": 140,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-203",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "OCTANE",
+      "quantity": 7000,
+      "planned_tick": 144,
+      "actual_tick": 144,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-205",
+      "depot_id": "depot-patiya",
+      "fuel_type": "PETROL",
+      "quantity": 8000,
+      "planned_tick": 144,
+      "actual_tick": 144,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-206",
+      "depot_id": "depot-patiya",
+      "fuel_type": "OCTANE",
+      "quantity": 6000,
+      "planned_tick": 148,
+      "actual_tick": 148,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-301",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "DIESEL",
+      "quantity": 12000,
+      "planned_tick": 200,
+      "actual_tick": 200,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-302",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "PETROL",
+      "quantity": 10000,
+      "planned_tick": 204,
+      "actual_tick": 204,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-304",
+      "depot_id": "depot-patiya",
+      "fuel_type": "DIESEL",
+      "quantity": 10000,
+      "planned_tick": 204,
+      "actual_tick": 204,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-303",
+      "depot_id": "depot-gazipur",
+      "fuel_type": "OCTANE",
+      "quantity": 7000,
+      "planned_tick": 208,
+      "actual_tick": 208,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-305",
+      "depot_id": "depot-patiya",
+      "fuel_type": "PETROL",
+      "quantity": 8000,
+      "planned_tick": 208,
+      "actual_tick": 208,
+      "status": "ARRIVED"
+    },
+    {
+      "id": "supply-306",
+      "depot_id": "depot-patiya",
+      "fuel_type": "OCTANE",
+      "quantity": 6000,
+      "planned_tick": 212,
+      "actual_tick": 212,
+      "status": "ARRIVED"
+    }
+  ],
+  "events": [
+    {
+      "id": 13,
+      "type": "shipment_delay",
+      "start_tick": 2272,
+      "end_tick": 2292,
+      "status": "RESOLVED",
+      "parameters": {
+        "depot_ids": [
+          "depot-gazipur"
+        ],
+        "delay_ticks": 8
+      }
+    },
+    {
+      "id": 12,
+      "type": "route_disruption",
+      "start_tick": 2272,
+      "end_tick": 2292,
+      "status": "RESOLVED",
+      "parameters": {
+        "route_ids": [
+          "route-gazipur-mirpur"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": "demand_spike",
+      "start_tick": 2272,
+      "end_tick": 2292,
+      "status": "RESOLVED",
+      "parameters": {
+        "region_ids": [
+          "region-dhaka"
+        ],
+        "multiplier": 2.5
+      }
+    },
+    {
+      "id": 10,
+      "type": "shipment_delay",
+      "start_tick": 52,
+      "end_tick": 72,
+      "status": "RESOLVED",
+      "parameters": {
+        "depot_ids": [
+          "depot-gazipur"
+        ],
+        "delay_ticks": 8
+      }
+    },
+    {
+      "id": 9,
+      "type": "route_disruption",
+      "start_tick": 52,
+      "end_tick": 72,
+      "status": "RESOLVED",
+      "parameters": {
+        "route_ids": [
+          "route-gazipur-mirpur"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "type": "demand_spike",
+      "start_tick": 52,
+      "end_tick": 72,
+      "status": "RESOLVED",
+      "parameters": {
+        "region_ids": [
+          "region-dhaka"
+        ],
+        "multiplier": 2.5
+      }
+    },
+    {
+      "id": 7,
+      "type": "shipment_delay",
+      "start_tick": 40,
+      "end_tick": 60,
+      "status": "RESOLVED",
+      "parameters": {
+        "depot_ids": [
+          "depot-gazipur"
+        ],
+        "delay_ticks": 8
+      }
+    },
+    {
+      "id": 6,
+      "type": "route_disruption",
+      "start_tick": 40,
+      "end_tick": 60,
+      "status": "RESOLVED",
+      "parameters": {
+        "route_ids": [
+          "route-gazipur-mirpur"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "type": "demand_spike",
+      "start_tick": 40,
+      "end_tick": 60,
+      "status": "RESOLVED",
+      "parameters": {
+        "region_ids": [
+          "region-dhaka"
+        ],
+        "multiplier": 2.5
+      }
+    },
+    {
+      "id": 4,
+      "type": "shipment_delay",
+      "start_tick": 28,
+      "end_tick": 48,
+      "status": "RESOLVED",
+      "parameters": {
+        "depot_ids": [
+          "depot-gazipur"
+        ],
+        "delay_ticks": 8
+      }
+    },
+    {
+      "id": 3,
+      "type": "route_disruption",
+      "start_tick": 28,
+      "end_tick": 48,
+      "status": "RESOLVED",
+      "parameters": {
+        "route_ids": [
+          "route-gazipur-mirpur"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "type": "demand_spike",
+      "start_tick": 28,
+      "end_tick": 48,
+      "status": "RESOLVED",
+      "parameters": {
+        "region_ids": [
+          "region-dhaka"
+        ],
+        "multiplier": 2.5
+      }
+    },
+    {
+      "id": 1,
+      "type": "demand_spike",
+      "start_tick": 2,
+      "end_tick": 42,
+      "status": "RESOLVED",
+      "parameters": {
+        "region_ids": [
+          "region-dhaka"
+        ],
+        "multiplier": 2.2
+      }
+    }
+  ],
+  "allocations": [],
+  "metrics": {
+    "served_demand_liters": 85900,
+    "unmet_demand_liters": 2547553.642,
+    "service_level": 0.032619,
+    "allocation_liters": 0,
+    "allocation_failures": 0
+  },
+  "meta": {
+    "fetchedAt": "2026-09-29T06:43:20.294Z",
+    "stale": false,
+    "degraded": false
+  }
+}

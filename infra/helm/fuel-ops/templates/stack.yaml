@@ -1,0 +1,113 @@
+{{- range $name, $svc := .Values.services }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fuel-ops-{{ $name }}
+spec:
+  selector: { app: fuel-ops-{{ $name }} }
+  ports:
+    - port: {{ $svc.port }}
+      targetPort: {{ $svc.port }}
+---
+{{- if and (eq $name "web") (ne $.Values.webStrategy "rolling") }}
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+{{- else }}
+apiVersion: apps/v1
+kind: Deployment
+{{- end }}
+metadata:
+  name: fuel-ops-{{ $name }}
+  labels: { app: fuel-ops-{{ $name }}, version: {{ $.Chart.AppVersion | quote }} }
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels: { app: fuel-ops-{{ $name }} }
+  strategy:
+    {{- if and (eq $name "web") (eq $.Values.webStrategy "blueGreen") }}
+    blueGreen:
+      activeService: fuel-ops-web
+      previewService: fuel-ops-web-preview
+      autoPromotionEnabled: false
+    {{- else if and (eq $name "web") (eq $.Values.webStrategy "canary") }}
+    canary:
+      steps:
+        - setWeight: 25
+        - pause: { duration: 60s }
+        - setWeight: 50
+        - pause: {}
+    {{- else if eq $name "web" }}
+    type: RollingUpdate
+    rollingUpdate: { maxSurge: 1, maxUnavailable: 0 }
+    {{- else }}
+    type: Recreate
+    {{- end }}
+  template:
+    metadata:
+      labels: { app: fuel-ops-{{ $name }} }
+    spec:
+      containers:
+        - name: {{ $name }}
+          image: {{ $svc.image | quote }}
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: {{ $svc.port }} }]
+          env:
+            {{- range $key, $value := $svc.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- if eq $name "postgres" }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: {{ $.Values.existingSecret }}, key: POSTGRES_PASSWORD }
+            {{- end }}
+          {{- if eq $name "api" }}
+          envFrom:
+            - secretRef: { name: {{ $.Values.existingSecret }} }
+          {{- end }}
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { cpu: "1", memory: 512Mi }
+          {{- if $svc.health }}
+          readinessProbe:
+            httpGet: { path: {{ $svc.health }}, port: {{ $svc.port }} }
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: {{ $svc.health }}, port: {{ $svc.port }} }
+            initialDelaySeconds: 60
+            periodSeconds: 15
+          {{- else }}
+          readinessProbe:
+            tcpSocket: { port: {{ $svc.port }} }
+            initialDelaySeconds: 5
+          {{- end }}
+          {{- if eq $name "postgres" }}
+          volumeMounts:
+            - { name: data, mountPath: /var/lib/postgresql/data }
+          {{- end }}
+      {{- if eq $name "postgres" }}
+      volumes:
+        - name: data
+          persistentVolumeClaim: { claimName: fuel-ops-postgres }
+      {{- end }}
+{{- end }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: { name: fuel-ops-postgres }
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests: { storage: {{ .Values.storage }} }
+{{- if eq .Values.webStrategy "blueGreen" }}
+---
+apiVersion: v1
+kind: Service
+metadata: { name: fuel-ops-web-preview }
+spec:
+  selector: { app: fuel-ops-web }
+  ports: [{ port: 3000, targetPort: 3000 }]
+{{- end }}

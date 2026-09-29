@@ -1,0 +1,5 @@
+# Use only when API runs on the host (pnpm dev).
+services:
+  prometheus:
+    volumes:
+      - ./infra/prometheus/prometheus-local.yml:/etc/prometheus/prometheus.yml:ro

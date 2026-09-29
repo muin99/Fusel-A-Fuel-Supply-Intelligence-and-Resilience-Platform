@@ -1,0 +1,18 @@
+# Set repoURL to the submission repository before applying. Requires Argo CD.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fuel-ops
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: REPLACE_WITH_SUBMISSION_REPOSITORY
+    targetRevision: main
+    path: infra/helm/fuel-ops
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: fuel-ops
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=true]

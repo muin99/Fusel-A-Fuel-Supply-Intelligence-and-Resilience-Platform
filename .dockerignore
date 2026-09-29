@@ -1,0 +1,12 @@
+**/node_modules
+**/dist
+**/.next
+**/coverage
+.env
+.git
+docs/source
+loadtest/results
+
+**/.terraform
+**/test-results
+**/playwright-report

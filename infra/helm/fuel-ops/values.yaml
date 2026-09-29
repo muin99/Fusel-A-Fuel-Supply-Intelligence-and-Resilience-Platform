@@ -1,0 +1,47 @@
+existingSecret: fuel-ops-env
+services:
+  simulator:
+    image: asifmahmoud414/bup-fuel-supply-simulator:1.0.0
+    port: 8000
+    health: /v1/health
+    env:
+      SIMULATOR_START_MODE: paused
+      TICK_MINUTES: "15"
+      SIMULATION_SPEED: "8"
+  postgres:
+    image: postgres:17-alpine
+    port: 5432
+    env:
+      POSTGRES_USER: fuelops
+      POSTGRES_DB: fuelops
+      PGDATA: /var/lib/postgresql/data/pgdata
+  redis:
+    image: redis:7-alpine
+    port: 6379
+    env: {}
+  api:
+    image: fuel-ops-api:1.0.0
+    port: 4000
+    health: /api/health/live
+    env:
+      NODE_ENV: production
+      SIMULATOR_URL: http://fuel-ops-simulator:8000
+      REDIS_URL: redis://fuel-ops-redis:6379
+      AUTO_DISPATCH: "false"
+  web:
+    image: fuel-ops-web:1.0.0
+    port: 3000
+    health: /
+    env: {}
+storage: 2Gi
+webStrategy: rolling
+# blueGreen and canary require the Argo Rollouts controller and CRDs.
+autoscaling:
+  enabled: true
+  min: 1
+  max: 4
+  cpu: 70
+ingress:
+  enabled: false
+  className: nginx
+  host: fuelops.local

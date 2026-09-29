@@ -1,0 +1,6 @@
+apiVersion: v2
+name: fuel-ops
+description: BUP simulator operations platform
+version: 1.0.0
+appVersion: "1.0.0"
+type: application
